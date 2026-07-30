@@ -42,7 +42,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize redirect script for empty links and #
   initEmptyLinkRedirects();
+
+  // Initialize Preloader
+  initPreloader();
 });
+
+// Preloader Dismissal Logic
+function initPreloader() {
+  const preloader = document.getElementById("preloader");
+  if (!preloader) return;
+
+  const preloaderCount = document.getElementById("preloaderCount");
+  const preloaderPhaseText = document.getElementById("preloaderPhaseText");
+
+  // Phase texts to cycle through
+  const phases = [
+    "Nurturing Dignity...",
+    "Fostering Connection...",
+    "Empowering Independence...",
+  ];
+
+  let currentPhase = 0;
+
+  // Dynamic phase text swapper
+  const swapPhaseInterval = setInterval(() => {
+    if (currentPhase < phases.length - 1) {
+      preloaderPhaseText.classList.add("fade-out-text");
+      setTimeout(() => {
+        currentPhase++;
+        preloaderPhaseText.innerText = phases[currentPhase];
+        preloaderPhaseText.classList.remove("fade-out-text");
+      }, 300);
+    }
+  }, 650);
+
+  // Counter animation (from 0 to 100 over 2 seconds)
+  let count = 0;
+  const target = 100;
+  const duration = 1800; // slightly shorter than 2s to guarantee reaching 100 before fadeout begins
+  const stepTime = Math.floor(duration / target);
+
+  const counterTimer = setInterval(() => {
+    count++;
+    if (preloaderCount) {
+      preloaderCount.innerText = count;
+    }
+    if (count >= target) {
+      clearInterval(counterTimer);
+    }
+  }, stepTime);
+
+  // Wait 2 seconds (2000ms), then begin fade-out transition
+  setTimeout(() => {
+    clearInterval(swapPhaseInterval);
+    clearInterval(counterTimer);
+    if (preloaderCount) preloaderCount.innerText = "100";
+
+    preloader.classList.add("fade-out");
+    document.body.classList.remove("preloader-active");
+
+    // Completely hide or remove element after the CSS opacity transition finishes (600ms)
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 600);
+  }, 2000);
+}
 
 // Helper to adjust relative paths in loaded header/footer HTML depending on directory depth
 function adjustPaths(html, isSubPage) {

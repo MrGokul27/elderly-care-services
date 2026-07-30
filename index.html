@@ -34,7 +34,52 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
-  <body>
+  <body class="preloader-active">
+    <!-- Preloader Overlay -->
+    <div id="preloader" class="preloader-wrapper">
+      <!-- Glow background shapes -->
+      <div class="preloader-bg-glow glow-1"></div>
+      <div class="preloader-bg-glow glow-2"></div>
+
+      <div class="preloader-content">
+        <!-- Circular Graphic Loader -->
+        <div class="preloader-graphic-container">
+          <div class="circle-dashed"></div>
+          <div class="circle-gradient"></div>
+          <div class="preloader-logo-holder">
+            <img
+              src="assets/images/logoStackly.webp"
+              alt="Stackly Care Services Logo"
+              class="preloader-logo header-logo"
+            />
+          </div>
+        </div>
+
+        <!-- Pulse icon & text info -->
+        <div class="preloader-theme-meta">
+          <div class="preloader-badge animate-pulse-soft">
+            <i class="fa-solid fa-hand-holding-heart text-accent me-2"></i>
+            <span>STACKLY CARE SERVICES</span>
+          </div>
+          <div class="preloader-text-carousel">
+            <span class="carousel-text active" id="preloaderPhaseText"
+              >Nurturing Dignity...</span
+            >
+          </div>
+        </div>
+
+        <!-- Progress Metrics -->
+        <div class="preloader-progress-container">
+          <div class="preloader-progress-track">
+            <div class="preloader-progress-fill"></div>
+          </div>
+          <div class="preloader-percentage">
+            <span id="preloaderCount">0</span>%
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Header area will be loaded here dynamically -->
     <div id="xb-header-area"></div>
 
@@ -519,7 +564,7 @@
       </section>
 
       <script>
-        // Inline logic for Calculator
+        // Inline logic for Calculator with Dynamic Track Highlight
         document.addEventListener("DOMContentLoaded", function () {
           const slider = document.getElementById("careHours");
           const hoursVal = document.getElementById("hoursVal");
@@ -528,9 +573,21 @@
           const monthlyCost = document.getElementById("monthlyCost");
 
           if (slider) {
+            const updateSliderTrack = () => {
+              const val = parseInt(slider.value);
+              const min = parseInt(slider.min || 2);
+              const max = parseInt(slider.max || 60);
+              const pct = ((val - min) / (max - min)) * 100;
+              slider.style.background = `linear-gradient(to right, var(--primary-teal) 0%, var(--primary-teal) ${pct}%, #e2e8f0 ${pct}%, #e2e8f0 100%)`;
+            };
+
+            // Set initial state
+            updateSliderTrack();
+
             slider.addEventListener("input", function () {
               const val = parseInt(slider.value);
               hoursVal.innerText = val + " Hours";
+              updateSliderTrack();
 
               // Visits math
               const visits = Math.max(1, Math.round(val / 5));
