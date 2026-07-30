@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Gallery & Case Studies - Stackly Care Services. View client activities, social outings, respite tours, and health case studies."
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Gallery & Case Studies - Stackly Care Services</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="../assets/images/logoStackly.webp"
+      type="image/webp"
+    />
+
+    <!-- Google Fonts & CDN Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/portfolio.css" />
+  </head>
+  <body>
+    <!-- Header loaded dynamically -->
+    <div id="xb-header-area"></div>
+
+    <main>
+      <!-- 1. Breadcrumb Banner -->
+      <section
+        class="page-banner text-center"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1543333995-a78aea2eee50?auto=format&fit=crop&q=80&w=1200&h=400&quot;);
+        "
+      >
+        <div class="container">
+          <h2 class="display-5 fw-bold mb-3 font-secondary">
+            Activity Gallery & Case Studies
+          </h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item">
+                <a href="../index.html"
+                  ><i class="fa-solid fa-house me-1"></i> Home</a
+                >
+              </li>
+              <li class="breadcrumb-item active text-white" aria-current="page">
+                Gallery
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <!-- 2. Gallery Intro -->
+      <section class="intro-section py-100 bg-white">
+        <div class="container text-center">
+          <span class="section-tag">ACTIVE LIVING</span>
+          <h2 class="section-title">
+            Celebrating social connections and active hobbies
+          </h2>
+          <p class="section-desc">
+            We believe active minds and physical mobility are vital to aged
+            wellness. Our companions host hobbies, outings, and physical
+            exercises daily.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Filterable Photo Gallery Grid -->
+      <section
+        class="photo-gallery-section py-5 bg-warm border-top border-bottom"
+      >
+        <div class="container">
+          <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+            <button class="gallery-filter-btn active" data-filter="all">
+              All Photos
+            </button>
+            <button class="gallery-filter-btn" data-filter="outings">
+              Social Outings
+            </button>
+            <button class="gallery-filter-btn" data-filter="therapies">
+              Therapy Sessions
+            </button>
+            <button class="gallery-filter-btn" data-filter="daily">
+              Daily Activities
+            </button>
+          </div>
+
+          <div class="row g-4" id="galleryGrid">
+            <div class="col-md-4 gallery-item" data-category="daily">
+              <div
+                class="gallery-card"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=500&h=350&quot;);
+                "
+              >
+                <a
+                  href="#"
+                  class="gallery-overlay-btn"
+                  onclick="event.preventDefault()"
+                >
+                  <h5 class="fw-bold mb-1">Painting & Art Therapy</h5>
+                  <small>Creative motor coordination exercises</small>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4 gallery-item" data-category="outings">
+              <div
+                class="gallery-card"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1543333995-a78aea2eee50?auto=format&fit=crop&q=80&w=500&h=350&quot;);
+                "
+              >
+                <a
+                  href="#"
+                  class="gallery-overlay-btn"
+                  onclick="event.preventDefault()"
+                >
+                  <h5 class="fw-bold mb-1">Museum Outings</h5>
+                  <small>Social connections and historical walks</small>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4 gallery-item" data-category="therapies">
+              <div
+                class="gallery-card"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=500&h=350&quot;);
+                "
+              >
+                <a
+                  href="#"
+                  class="gallery-overlay-btn"
+                  onclick="event.preventDefault()"
+                >
+                  <h5 class="fw-bold mb-1">Cognitive Card Games</h5>
+                  <small>Memory retention and quick strategy</small>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        // Filterable Gallery Javascript
+        document.addEventListener("DOMContentLoaded", function () {
+          const filterBtns = document.querySelectorAll(".gallery-filter-btn");
+          const galleryItems = document.querySelectorAll(".gallery-item");
+
+          filterBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              // Remove active class from all
+              filterBtns.forEach((b) => b.classList.remove("active"));
+              btn.classList.add("active");
+
+              const filterVal = btn.getAttribute("data-filter");
+
+              galleryItems.forEach((item) => {
+                const cat = item.getAttribute("data-category");
+                if (filterVal === "all" || cat === filterVal) {
+                  item.style.display = "block";
+                } else {
+                  item.style.display = "none";
+                }
+              });
+            });
+          });
+        });
+      </script>
+
+      <!-- 4. Client Case Studies Grid -->
+      <section class="case-studies-section py-100 bg-white">
+        <div class="container text-center">
+          <span class="section-tag">SUCCESS STORIES</span>
+          <h2 class="section-title">Care journey success chronicles</h2>
+          <p class="section-desc">
+            Read how custom care planning restored independence and daily joy to
+            senior lives.
+          </p>
+
+          <div class="row g-4 text-start justify-content-center">
+            <div class="col-lg-4 col-md-6">
+              <div class="case-card shadow-sm border hover-lift">
+                <div
+                  class="case-img"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=400&h=300&quot;);
+                  "
+                ></div>
+                <div class="case-body">
+                  <span class="badge bg-teal-xlight text-teal mb-2"
+                    >Mobility Recovery</span
+                  >
+                  <h5 class="fw-bold text-teal">
+                    Restoring balance after hip fracture
+                  </h5>
+                  <p class="text-muted small">
+                    Our post-hospital nurses worked alongside physiotherapists
+                    to design custom home exercises, restoring independent
+                    walking capabilities in three months.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="case-card shadow-sm border hover-lift">
+                <div
+                  class="case-img"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=400&h=300&quot;);
+                  "
+                ></div>
+                <div class="case-body">
+                  <span class="badge bg-accent-xlight text-accent mb-2"
+                    >Memory Retaining</span
+                  >
+                  <h5 class="fw-bold text-teal">
+                    Navigating advanced Alzheimer care
+                  </h5>
+                  <p class="text-muted small">
+                    By matching Elena, we introduced personalized memory
+                    stimulation scripts that calmed behavioral stress levels
+                    without increasing clinical sedations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Social Outings Scrapbook Timeline -->
+      <section class="scrapbook-section py-100 bg-warm">
+        <div class="container text-center">
+          <span class="section-tag">OUTINGS LOG</span>
+          <h2 class="section-title">Outings scrapbook timeline</h2>
+          <p class="section-desc">
+            A snapshot of the group activities hosted by our companions in
+            recent weeks.
+          </p>
+
+          <div class="row g-4 text-start">
+            <div class="col-md-3 col-sm-6">
+              <div class="scrapbook-card shadow-sm text-center">
+                <div
+                  class="scrapbook-img"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1543333995-a78aea2eee50?auto=format&fit=crop&q=80&w=300&h=200&quot;);
+                  "
+                ></div>
+                <h6 class="fw-bold text-teal mb-1">Botanical Tour</h6>
+                <small class="text-muted">July 2026 - Rose Garden</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="scrapbook-card shadow-sm text-center">
+                <div
+                  class="scrapbook-img"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=300&h=200&quot;);
+                  "
+                ></div>
+                <h6 class="fw-bold text-teal mb-1">Music Therapy</h6>
+                <small class="text-muted">July 2026 - Jazz concert</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="scrapbook-card shadow-sm text-center">
+                <div
+                  class="scrapbook-img"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=300&h=200&quot;);
+                  "
+                ></div>
+                <h6 class="fw-bold text-teal mb-1">Senior Arts Fest</h6>
+                <small class="text-muted">June 2026 - Community Hall</small>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="scrapbook-card shadow-sm text-center">
+                <div
+                  class="scrapbook-img"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&q=80&w=300&h=200&quot;);
+                  "
+                ></div>
+                <h6 class="fw-bold text-teal mb-1">Weekly Tea Meets</h6>
+                <small class="text-muted">June 2026 - Local Cafe</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Virtual Tour Showcase -->
+      <section class="tour-section py-100 bg-white">
+        <div class="container text-center">
+          <span class="section-tag">DAY CENTER TOUR</span>
+          <h2 class="section-title">
+            Take a virtual tour of our Respite Center
+          </h2>
+          <p class="section-desc">
+            Explore our custom safety-proofed lounges, physical therapy gyms,
+            and craft rooms.
+          </p>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="tour-card shadow">
+                <div
+                  class="tour-media"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800&h=450&quot;);
+                  "
+                >
+                  <a
+                    href="#"
+                    class="play-btn"
+                    onclick="
+                      event.preventDefault();
+                      alert('Loading virtual tour... (Mockup)');
+                    "
+                    ><i class="fa-solid fa-play"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Family Portal Shared Moments -->
+      <section class="portal-section py-100 bg-warm">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0 text-center">
+              <img
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=500&h=400"
+                alt="App screen showing moments"
+                class="img-fluid rounded-4 shadow border"
+              />
+            </div>
+            <div class="col-lg-6">
+              <span class="section-tag">SHARED MOMENTS</span>
+              <h2 class="section-title">Shared moments dashboard</h2>
+              <p class="text-muted mb-4">
+                Every outing and therapy session is cataloged. Caregivers upload
+                photographs and nursing updates directly to your private family
+                dashboard portal, keeping families connected across distances.
+              </p>
+              <div class="d-flex flex-column gap-3 text-teal fw-semibold">
+                <div>
+                  <i class="fa-solid fa-lock-open me-2 text-accent"></i> 100%
+                  secure, password-protected portal access
+                </div>
+                <div>
+                  <i class="fa-solid fa-photo-film me-2 text-accent"></i>
+                  Real-time photos and caregiver notes upload
+                </div>
+                <div>
+                  <i class="fa-solid fa-print me-2 text-accent"></i> Printable
+                  weekly memory albums for seniors
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Testimonial focused on activities -->
+      <section
+        class="activities-testimonial py-5 bg-white border-top border-bottom text-center"
+      >
+        <div class="container py-3">
+          <p class="fst-italic text-muted max-width-700 mx-auto">
+            "My father used to sit in his chair all day before Marcus arrived.
+            Now they are planning museum trips every week. The activity log is a
+            joy to view!"
+          </p>
+          <h6 class="fw-bold text-teal mb-0 mt-3">
+            - Eleanor Vance, Daughter of Client
+          </h6>
+        </div>
+      </section>
+
+      <!-- 9. Tour Booking CTA -->
+      <section class="join-banner py-5 bg-teal text-white text-center">
+        <div class="container py-3">
+          <h3 class="fw-bold font-secondary mb-2">
+            Want to visit our Respite Center?
+          </h3>
+          <p class="lead mb-4">
+            Schedule a personal physical tour with our head clinical
+            coordinators.
+          </p>
+          <a href="#" class="btn btn-accent btn-lg rounded-pill px-5 hover-lift"
+            >Book Respite Tour Now</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer loaded dynamically -->
+    <div id="xb-footer-area"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+  </body>
+</html>

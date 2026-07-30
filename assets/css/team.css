@@ -1,0 +1,64 @@
+/* 1. Clinical Leadership Grid */
+.leader-card {
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border-bottom: 5px solid var(--primary-teal);
+  height: 100%;
+}
+.leader-img {
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+}
+.leader-body {
+  padding: 30px;
+}
+
+/* 2. Care Specialists Grid */
+.specialist-card {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+  height: 100%;
+}
+.specialist-img {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+.specialist-body {
+  padding: 20px;
+}
+
+/* 3. Caregiver of the Month Spotlight */
+.spotlight-card {
+  background: linear-gradient(135deg, #fff 0%, var(--bg-warm) 100%);
+  border: 3px solid var(--accent-gold);
+  border-radius: 24px;
+  padding: 50px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(217, 119, 6, 0.05);
+}
+.spotlight-badge {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: var(--accent-gold);
+  color: white;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 991px) {
+  .spotlight-card {
+    padding: 30px 20px;
+    text-align: center;
+  }
+}

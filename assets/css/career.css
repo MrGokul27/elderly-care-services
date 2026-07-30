@@ -1,0 +1,86 @@
+/* 1. Benefits Grid */
+.benefit-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+  border-top: 4px solid var(--primary-teal);
+  height: 100%;
+}
+.benefit-icon {
+  font-size: 32px;
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+}
+
+/* 2. Current Openings Accordion */
+.jobs-accordion .accordion-item {
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.01);
+}
+.jobs-accordion .accordion-button {
+  background-color: #fff;
+  color: var(--text-slate);
+  padding: 25px;
+  font-weight: 700;
+}
+.jobs-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--primary-teal-xlight);
+  color: var(--primary-teal-dark);
+}
+.job-meta span {
+  font-size: 14px;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+/* 3. Online Application Form Card */
+.application-form-card {
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 50px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+}
+
+/* 4. Career Timeline Steps */
+.career-step-item {
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 40px;
+}
+.career-step-item::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 17px;
+  bottom: -45px;
+  width: 2px;
+  background-color: var(--primary-teal-xlight);
+}
+.career-step-item:last-child::before {
+  display: none;
+}
+.career-step-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  background-color: var(--primary-teal);
+  color: white;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(15, 118, 110, 0.2);
+}
+
+@media (max-width: 991px) {
+  .application-form-card {
+    padding: 30px 20px;
+  }
+}

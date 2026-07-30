@@ -1,0 +1,96 @@
+/* 1. HCP Level Cards */
+.hcp-card {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border-top: 5px solid var(--primary-teal-light);
+  height: 100%;
+}
+.hcp-card.featured {
+  border-top-color: var(--accent-gold);
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+.hcp-level {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.hcp-subsidy {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-teal);
+  font-family: var(--font-secondary);
+}
+
+/* 2. Custom Tabs Nav */
+.services-tabs .nav-link {
+  background-color: #fff;
+  color: var(--text-slate);
+  border: 1px solid var(--border-color);
+  padding: 15px 25px;
+  font-weight: 600;
+  margin-right: 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.services-tabs .nav-link.active {
+  background-color: var(--primary-teal);
+  color: #fff !important;
+  border-color: var(--primary-teal);
+}
+.tab-content-box {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 55px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.02);
+}
+
+/* 3. Safety Shield Elements */
+.shield-box {
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-teal) 0%,
+    var(--primary-teal-dark) 100%
+  );
+  color: #fff;
+  padding: 60px;
+}
+.shield-icon-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  margin-bottom: 25px;
+}
+
+/* 4. Circle App Section */
+.app-mockup-wrapper {
+  position: relative;
+  text-align: center;
+}
+.app-screen {
+  width: 280px;
+  border: 10px solid #1e293b;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 991px) {
+  .hcp-card.featured {
+    transform: none;
+  }
+  .tab-content-box {
+    padding: 30px 20px;
+  }
+  .shield-box {
+    padding: 40px 20px;
+  }
+}
