@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => console.error("Error loading footer:", error));
   }
+
+  // Initialize redirect script for empty links and #
+  initEmptyLinkRedirects();
 });
 
 // Helper to adjust relative paths in loaded header/footer HTML depending on directory depth
@@ -171,4 +174,40 @@ function initStickyHeader() {
   // Initial check
   checkScroll();
   window.addEventListener("scroll", checkScroll);
+}
+
+// Intercept all empty or hash links and redirect them to the 404 page
+function initEmptyLinkRedirects() {
+  document.addEventListener("click", function (event) {
+    if (event.defaultPrevented) return;
+
+    // Find closest anchor tag
+    const link = event.target.closest("a");
+    if (link) {
+      const href = link.getAttribute("href");
+
+      // Check if href is an empty link or '#'
+      const isEmptyHash = href === "#";
+      const isEmptyString = href === "";
+      const isJsVoid =
+        href &&
+        href.toLowerCase().startsWith("javascript:") &&
+        (href.includes("void(0)") ||
+          href.includes("void(0);") ||
+          href.trim() === "javascript:;");
+
+      // If it's a bootstrap interactive toggle (like tab or collapse), do not redirect
+      const hasBsToggle = link.hasAttribute("data-bs-toggle");
+
+      if ((isEmptyHash || isEmptyString || isJsVoid) && !hasBsToggle) {
+        event.preventDefault();
+
+        // Determine correct path relative to current page location
+        const isSubPage = window.location.pathname.includes("/pages/");
+        const redirectPath = isSubPage ? "../404.html" : "404.html";
+
+        window.location.href = redirectPath;
+      }
+    }
+  });
 }
