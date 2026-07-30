@@ -190,6 +190,10 @@ h6,
   opacity: 0.8;
 }
 
+.breadcrumb-item + .breadcrumb-item::before {
+  color: #fff;
+}
+
 /* Scroll to Top Button Styling */
 .scroll-to-top {
   position: fixed;
@@ -836,4 +840,62 @@ h6,
   .consultation-form-box {
     padding: 40px 20px;
   }
+}
+
+/* Custom Header Logo & Subtle Background Image Sections */
+.header-logo {
+  filter: brightness(0) saturate(100%) invert(39%) sepia(26%) saturate(1469%)
+    hue-rotate(130deg) brightness(93%) contrast(90%);
+}
+
+.has-bg-img {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.has-bg-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Dynamic overlay based on bg-white or bg-warm color classes - optimized for higher image visibility */
+.has-bg-img.bg-white::before {
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.has-bg-img.bg-warm::before {
+  background: rgba(247, 245, 240, 0.722);
+}
+
+/* Fallback default overlay */
+.has-bg-img:not(.bg-white):not(.bg-warm)::before {
+  background: rgba(253, 251, 247, 0.84);
+}
+
+/* Ensure section content sits on top of the overlay */
+.has-bg-img > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced readability for text directly on background sections */
+.has-bg-img .section-title {
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85);
+}
+
+.has-bg-img .section-desc {
+  color: var(--text-slate) !important;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.has-bg-img .text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
