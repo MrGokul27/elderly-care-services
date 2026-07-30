@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Log in to Stackly Care Services - Secure access to client portal, caregiver schedules, and administration."
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Login - Stackly Care Services</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="../assets/images/logoStackly.webp"
+      type="image/webp"
+    />
+
+    <!-- Google Fonts & Icon Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/auth.css" />
+  </head>
+  <body>
+    <div class="auth-wrapper">
+      <!-- Left Split-Screen Side (Visual Panel) -->
+      <div class="auth-image-side">
+        <div class="auth-brand-logo">
+          <a href="../index.html">
+            <img
+              src="../assets/images/logoStackly.webp"
+              alt="Stackly Care Services Logo"
+            />
+          </a>
+        </div>
+
+        <div class="auth-image-content">
+          <h2>Compassionate Care, Professional Support.</h2>
+          <p>
+            Connecting family members, dedicated caregivers, and clinical
+            administrators to provide the highest standard of personalized home
+            care.
+          </p>
+
+          <div class="auth-testimonial-card animate-fade-in">
+            <p class="auth-testimonial-text">
+              "The caregiver matching process was incredible. We found a nurse
+              who treats my mother like family. Knowing she is in safe hands
+              gives us complete peace of mind."
+            </p>
+            <p class="auth-testimonial-author">— Sarah J., Client Daughter</p>
+          </div>
+        </div>
+
+        <div class="auth-image-footer">
+          <small class="text-white-50"
+            >&copy; 2026 Stackly Care Services. All Rights Reserved.</small
+          >
+        </div>
+      </div>
+
+      <!-- Right Split-Screen Side (Form Panel) -->
+      <div class="auth-form-side">
+        <div class="auth-form-container">
+          <!-- Status alert box for redirection messages -->
+          <div id="statusAlert" class="auth-status-alert d-none">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="statusAlertText">Action completed successfully.</span>
+          </div>
+
+          <div class="auth-form-header text-center text-lg-start">
+            <h1>Welcome Back</h1>
+            <p class="mb-0">
+              Please enter your credentials to access your care dashboard.
+            </p>
+          </div>
+
+          <div class="auth-card">
+            <form id="loginForm" novalidate>
+              <!-- Role Selection Field -->
+              <div class="form-group-custom">
+                <label for="role"
+                  >Select Your Role <span class="text-danger">*</span></label
+                >
+                <div class="input-icon-wrapper">
+                  <select
+                    id="role"
+                    name="role"
+                    class="input-control-custom"
+                    required
+                  >
+                    <option value="" disabled selected>Choose a role...</option>
+                    <option value="client">Client / Family Member</option>
+                    <option value="caregiver">Caregiver / Nurse</option>
+                    <option value="admin">Administrator</option>
+                  </select>
+                  <i class="fa-solid fa-users-gear field-icon"></i>
+                </div>
+                <div class="feedback-msg error d-none" id="roleError">
+                  <i class="fa-solid fa-circle-exclamation"></i> Please select a
+                  role.
+                </div>
+              </div>
+
+              <!-- Email Field -->
+              <div class="form-group-custom">
+                <label for="email"
+                  >Email Address <span class="text-danger">*</span></label
+                >
+                <div class="input-icon-wrapper">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="input-control-custom"
+                    placeholder="name@domain.com"
+                    required
+                  />
+                  <i class="fa-solid fa-envelope field-icon"></i>
+                </div>
+                <div class="feedback-msg error d-none" id="emailError">
+                  <i class="fa-solid fa-circle-exclamation"></i> Please enter a
+                  valid email address.
+                </div>
+              </div>
+
+              <!-- Password Field -->
+              <div class="form-group-custom">
+                <label for="password"
+                  >Password <span class="text-danger">*</span></label
+                >
+                <div class="input-icon-wrapper">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="input-control-custom password-input"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <i class="fa-solid fa-lock field-icon"></i>
+                  <button
+                    type="button"
+                    class="password-toggle"
+                    id="passwordToggleBtn"
+                    aria-label="Toggle password visibility"
+                  >
+                    <i class="fa-regular fa-eye" id="passwordToggleIcon"></i>
+                  </button>
+                </div>
+
+                <!-- Password Strength Meter -->
+                <div
+                  class="password-strength-wrapper d-none"
+                  id="passwordStrengthWrapper"
+                >
+                  <div class="strength-meter-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="strength-text" id="strengthText"></div>
+                </div>
+
+                <div class="feedback-msg error d-none" id="passwordError">
+                  <i class="fa-solid fa-circle-exclamation"></i> Password is
+                  required.
+                </div>
+              </div>
+
+              <!-- Remember Me Checkbox -->
+              <div class="checkbox-custom-group">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  name="rememberMe"
+                  required
+                />
+                <label for="rememberMe"
+                  >I understand that I am logging into a secure care system and
+                  want to remember my login
+                  <span class="text-danger">*</span></label
+                >
+              </div>
+              <div
+                class="feedback-msg error d-none"
+                id="rememberError"
+                style="margin-top: -1rem; margin-bottom: 1rem"
+              >
+                <i class="fa-solid fa-circle-exclamation"></i> You must agree to
+                proceed.
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-auth-submit" id="submitBtn">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Log In
+              </button>
+            </form>
+
+            <div class="auth-redirect-text">
+              Don't have an account? <a href="register.html">Register here</a>
+            </div>
+
+            <hr
+              class="my-4"
+              style="border-top: 1px solid var(--border-color); opacity: 0.5"
+            />
+
+            <!-- Back to Home Button -->
+            <a href="../index.html" class="btn-back-home">
+              <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CDN Script Library references -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Login Page Validation Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("loginForm");
+        const roleInput = document.getElementById("role");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const rememberCheckbox = document.getElementById("rememberMe");
+        const passwordToggleBtn = document.getElementById("passwordToggleBtn");
+        const passwordToggleIcon =
+          document.getElementById("passwordToggleIcon");
+        const strengthWrapper = document.getElementById(
+          "passwordStrengthWrapper",
+        );
+        const strengthText = document.getElementById("strengthText");
+
+        // Check for successful registration message in URL query params
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("registered") === "true") {
+          const statusAlert = document.getElementById("statusAlert");
+          const statusAlertText = document.getElementById("statusAlertText");
+          statusAlert.classList.remove("d-none");
+          statusAlert.classList.add("success");
+          statusAlertText.textContent =
+            "Registration successful! Please log in to your new account.";
+          // Clear query parameters
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname,
+          );
+        }
+
+        // Password toggle visibility
+        passwordToggleBtn.addEventListener("click", function () {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordToggleIcon.classList.remove("fa-regular", "fa-eye");
+            passwordToggleIcon.classList.add("fa-solid", "fa-eye-slash");
+          } else {
+            passwordInput.type = "password";
+            passwordToggleIcon.classList.remove("fa-solid", "fa-eye-slash");
+            passwordToggleIcon.classList.add("fa-regular", "fa-eye");
+          }
+        });
+
+        // Password strength validator helper
+        function checkPasswordStrength(val) {
+          if (!val) return { score: 0, text: "", class: "" };
+
+          let score = 0;
+
+          // Criteria 1: Length
+          if (val.length >= 6) score++;
+
+          // Criteria 2: Mixed alphanumeric (letters and numbers)
+          if (/[a-zA-Z]/.test(val) && /[0-9]/.test(val)) score++;
+
+          // Criteria 3: Complex (Uppercase + Lowercase + number + special character) and length >= 8
+          if (
+            val.length >= 8 &&
+            /[A-Z]/.test(val) &&
+            /[a-z]/.test(val) &&
+            /[0-9]/.test(val) &&
+            /[^A-Za-z0-9]/.test(val)
+          ) {
+            score++;
+          }
+
+          if (score === 1) {
+            return { score: 1, text: "Weak Password", class: "weak" };
+          } else if (score === 2) {
+            return { score: 2, text: "Medium Strength", class: "medium" };
+          } else if (score === 3) {
+            return { score: 3, text: "Strong Password", class: "strong" };
+          } else {
+            return {
+              score: 1,
+              text: "Weak Password (Too short / Simple)",
+              class: "weak",
+            };
+          }
+        }
+
+        // Real-time strength display
+        passwordInput.addEventListener("input", function () {
+          const val = this.value;
+          if (!val) {
+            strengthWrapper.classList.add("d-none");
+            return;
+          }
+
+          strengthWrapper.classList.remove("d-none");
+          const strength = checkPasswordStrength(val);
+
+          // Reset classes
+          strengthWrapper.className =
+            "password-strength-wrapper " + strength.class;
+          strengthText.className = "strength-text " + strength.class;
+
+          let iconMarkup = "";
+          if (strength.class === "weak") {
+            iconMarkup = '<i class="fa-solid fa-circle-exclamation"></i> ';
+          } else if (strength.class === "medium") {
+            iconMarkup = '<i class="fa-solid fa-circle-check"></i> ';
+          } else if (strength.class === "strong") {
+            iconMarkup = '<i class="fa-solid fa-shield-halved"></i> ';
+          }
+
+          strengthText.innerHTML = iconMarkup + strength.text;
+        });
+
+        // Helper function to show/hide errors
+        function setFieldError(inputEl, errorEl, hasError) {
+          if (hasError) {
+            inputEl.classList.add("is-invalid");
+            errorEl.classList.remove("d-none");
+          } else {
+            inputEl.classList.remove("is-invalid");
+            errorEl.classList.add("d-none");
+          }
+        }
+
+        // Field blur validation triggers
+        roleInput.addEventListener("change", function () {
+          setFieldError(
+            roleInput,
+            document.getElementById("roleError"),
+            !roleInput.value,
+          );
+        });
+
+        emailInput.addEventListener("input", function () {
+          const isValidEmail =
+            emailInput.validity.valid && emailInput.value.includes("@");
+          setFieldError(
+            emailInput,
+            document.getElementById("emailError"),
+            !isValidEmail,
+          );
+        });
+
+        passwordInput.addEventListener("input", function () {
+          setFieldError(
+            passwordInput,
+            document.getElementById("passwordError"),
+            !passwordInput.value,
+          );
+        });
+
+        rememberCheckbox.addEventListener("change", function () {
+          setFieldError(
+            rememberCheckbox,
+            document.getElementById("rememberError"),
+            !rememberCheckbox.checked,
+          );
+        });
+
+        // Form submission validation
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let isValid = true;
+
+          // 1. Role validation
+          if (!roleInput.value) {
+            setFieldError(
+              roleInput,
+              document.getElementById("roleError"),
+              true,
+            );
+            isValid = false;
+          } else {
+            setFieldError(
+              roleInput,
+              document.getElementById("roleError"),
+              false,
+            );
+          }
+
+          // 2. Email validation
+          const isValidEmail =
+            emailInput.validity.valid &&
+            emailInput.value.includes("@") &&
+            emailInput.value.trim() !== "";
+          if (!isValidEmail) {
+            setFieldError(
+              emailInput,
+              document.getElementById("emailError"),
+              true,
+            );
+            isValid = false;
+          } else {
+            setFieldError(
+              emailInput,
+              document.getElementById("emailError"),
+              false,
+            );
+          }
+
+          // 3. Password validation
+          if (!passwordInput.value) {
+            setFieldError(
+              passwordInput,
+              document.getElementById("passwordError"),
+              true,
+            );
+            document.getElementById("passwordError").innerHTML =
+              '<i class="fa-solid fa-circle-exclamation"></i> Password is required.';
+            isValid = false;
+          } else {
+            // Check weak password validation
+            const strength = checkPasswordStrength(passwordInput.value);
+            if (strength.class === "weak" || strength.score < 2) {
+              setFieldError(
+                passwordInput,
+                document.getElementById("passwordError"),
+                true,
+              );
+              document.getElementById("passwordError").innerHTML =
+                '<i class="fa-solid fa-circle-exclamation"></i> Password is too weak. Please use at least 6 characters containing both letters and numbers.';
+              isValid = false;
+            } else {
+              setFieldError(
+                passwordInput,
+                document.getElementById("passwordError"),
+                false,
+              );
+            }
+          }
+
+          // 4. Remember me validation (required checkbox check)
+          if (!rememberCheckbox.checked) {
+            setFieldError(
+              rememberCheckbox,
+              document.getElementById("rememberError"),
+              true,
+            );
+            isValid = false;
+          } else {
+            setFieldError(
+              rememberCheckbox,
+              document.getElementById("rememberError"),
+              false,
+            );
+          }
+
+          // Action on valid submit
+          if (isValid) {
+            // Create login success indicator
+            const statusAlert = document.getElementById("statusAlert");
+            const statusAlertText = document.getElementById("statusAlertText");
+            statusAlert.classList.remove("d-none", "error");
+            statusAlert.classList.add("success");
+            statusAlertText.textContent =
+              "Login successful! Redirecting to dashboard...";
+
+            // Disable submit button during mock submit process
+            document.getElementById("submitBtn").disabled = true;
+
+            // Simulate auth process, redirect to Home Page for demo purposes
+            setTimeout(() => {
+              window.location.href = "../index.html";
+            }, 1500);
+          } else {
+            // Show error banner at the top
+            const statusAlert = document.getElementById("statusAlert");
+            const statusAlertText = document.getElementById("statusAlertText");
+            statusAlert.classList.remove("d-none", "success");
+            statusAlert.classList.add("error");
+            statusAlertText.textContent =
+              "Please correct the highlighted errors before submitting.";
+
+            // Scroll form container to top
+            document.querySelector(".auth-form-side").scrollTop = 0;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

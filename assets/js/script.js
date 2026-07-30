@@ -66,6 +66,8 @@ function adjustPaths(html, isSubPage) {
       "career.html",
       "blog.html",
       "contact.html",
+      "login.html",
+      "register.html",
     ];
     pages.forEach((page) => {
       const regex = new RegExp(`href="${page}"`, "g");
