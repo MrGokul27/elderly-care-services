@@ -1348,9 +1348,14 @@
                   action="#"
                   onsubmit="
                     event.preventDefault();
-                    alert(
-                      'Your assessment has been scheduled. Our team will contact you shortly!',
-                    );
+                    const btn = this.querySelector('button[type=submit]');
+                    if (btn) {
+                      btn.disabled = true;
+                      btn.innerHTML =
+                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Request Submitted!';
+                      btn.className =
+                        'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm';
+                    }
                   "
                 >
                   <div class="row g-3">

@@ -159,7 +159,14 @@
                   action="#"
                   onsubmit="
                     event.preventDefault();
-                    alert('Your message has been sent. Thank you!');
+                    const btn = this.querySelector('button[type=submit]');
+                    if (btn) {
+                      btn.disabled = true;
+                      btn.innerHTML =
+                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Message Sent!';
+                      btn.className =
+                        'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm';
+                    }
                   "
                 >
                   <div class="row g-3">
@@ -331,7 +338,16 @@
                   action="#"
                   onsubmit="
                     event.preventDefault();
-                    alert('Your feedback has been logged. Thank you!');
+                    const feedbackBtn = this.querySelector(
+                      'button[type=submit]',
+                    );
+                    if (feedbackBtn) {
+                      feedbackBtn.disabled = true;
+                      feedbackBtn.innerHTML =
+                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Feedback Logged!';
+                      feedbackBtn.className =
+                        'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm';
+                    }
                   "
                 >
                   <div class="row g-3">

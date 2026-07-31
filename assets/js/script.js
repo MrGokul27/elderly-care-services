@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headerArea.innerHTML = adjustPaths(data, isSubPage);
         highlightActiveNav();
         initMobileMenu();
+        updateNavbarForLoggedInUser(headerArea, isSubPage);
       })
       .catch((error) => console.error("Error loading header:", error));
   }
@@ -390,4 +391,18 @@ function injectScrollAnimationClasses() {
     }
     img.classList.add("reveal-zoom-in");
   });
+}
+
+// Dynamically check and update login/assessment buttons to point to the user's dashboard if logged in
+function updateNavbarForLoggedInUser(headerArea, isSubPage) {
+  const sessionData = localStorage.getItem("elderlyCareUser");
+  if (sessionData) {
+    const btn = headerArea.querySelector('a[href*="login.html"]');
+    if (btn) {
+      btn.innerHTML = '<i class="fa-solid fa-gauge-high me-1"></i> Care Portal';
+      btn.href = isSubPage ? "dashboard.html" : "pages/dashboard.html";
+      btn.classList.remove("btn-teal");
+      btn.classList.add("btn-accent");
+    }
+  }
 }

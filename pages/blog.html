@@ -102,7 +102,12 @@
                       class="btn btn-teal rounded-pill px-4"
                       onclick="
                         event.preventDefault();
-                        alert('Loading full article (Mockup)');
+                        const originalText = this.innerHTML;
+                        this.innerHTML =
+                          '<i class=&quot;fa-solid fa-spinner fa-spin me-1&quot;></i> Loading...';
+                        setTimeout(() => {
+                          this.innerHTML = originalText;
+                        }, 1200);
                       "
                       >Read Article</a
                     >
@@ -243,9 +248,11 @@
                   style="width: 40px; height: 40px"
                   onclick="
                     event.preventDefault();
-                    alert(
-                      'Downloading Home Fall Prevention Checklist... (Mockup)',
-                    );
+                    const downloadIcon = this.querySelector('i');
+                    if (downloadIcon) {
+                      downloadIcon.className =
+                        'fa-solid fa-circle-check text-white';
+                    }
                   "
                   ><i class="fa-solid fa-download"></i
                 ></a>
@@ -266,9 +273,10 @@
                   style="width: 40px; height: 40px"
                   onclick="
                     event.preventDefault();
-                    alert(
-                      'Downloading NDIS Planning Guide Booklet... (Mockup)',
-                    );
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                      icon.className = 'fa-solid fa-circle-check text-white';
+                    }
                   "
                   ><i class="fa-solid fa-download"></i
                 ></a>
@@ -339,7 +347,14 @@
                   class="row g-3 justify-content-center"
                   onsubmit="
                     event.preventDefault();
-                    alert('Thank you for subscribing!');
+                    const btn = this.querySelector('button[type=submit]');
+                    if (btn) {
+                      btn.disabled = true;
+                      btn.innerHTML =
+                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Subscribed!';
+                      btn.className =
+                        'btn btn-success w-100 rounded-pill py-2 fw-semibold';
+                    }
                   "
                 >
                   <div class="col-md-8">

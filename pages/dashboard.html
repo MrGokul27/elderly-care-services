@@ -1,0 +1,2810 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Stackly Care Services Dashboard - Secure portal for clients, caregivers, and administrators."
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Care Portal - Stackly Care Services</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="../assets/images/logoStackly.webp"
+      type="image/webp"
+    />
+
+    <!-- Google Fonts & Icon Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Dashboard Core Wrapper -->
+    <div class="dashboard-wrapper" id="dashboardWrapper">
+      <!-- Sidebar Backdrop for Mobile Screens -->
+      <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+      <!-- --- Sidebar Menu --- -->
+      <aside class="dashboard-sidebar" id="dashboardSidebar">
+        <!-- Brand Logo Header -->
+        <div class="sidebar-brand">
+          <a
+            href="../index.html"
+            class="d-flex align-items-center text-decoration-none"
+          >
+            <img
+              src="../assets/images/logoStackly.webp"
+              alt="Stackly Care Services Logo"
+              class="me-2"
+            />
+          </a>
+        </div>
+
+        <!-- User Information Badge -->
+        <div class="sidebar-user-card">
+          <div class="d-flex align-items-center gap-3">
+            <div class="user-avatar-placeholder" id="userAvatar">U</div>
+            <div class="user-details overflow-hidden">
+              <h6 class="mb-0 text-truncate" id="userNameLabel">User Name</h6>
+              <small id="userRoleBadge">Role</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Navigation (Role Specific List) -->
+        <nav class="sidebar-nav">
+          <!-- 1. Client / Family Member Sidebar Navigation -->
+          <div class="role-nav-group d-none" id="navGroup-client">
+            <div class="nav-section-title">Client Portal</div>
+            <a
+              href="#"
+              class="sidebar-link active"
+              data-panel="client-overview"
+            >
+              <i class="fa-solid fa-house-chimney"></i>
+              <span>Dashboard Overview</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="client-schedule">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Care Schedule</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="client-reports">
+              <i class="fa-solid fa-file-waveform"></i>
+              <span>Daily Care Reports</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="client-billing">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>Billing & Payments</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="client-support">
+              <i class="fa-solid fa-circle-question"></i>
+              <span>Help & Support</span>
+            </a>
+          </div>
+
+          <!-- 2. Caregiver / Nurse Sidebar Navigation -->
+          <div class="role-nav-group d-none" id="navGroup-caregiver">
+            <div class="nav-section-title">Caregiver Hub</div>
+            <a
+              href="#"
+              class="sidebar-link active"
+              data-panel="caregiver-overview"
+            >
+              <i class="fa-solid fa-hospital-user"></i>
+              <span>Overview & Alerts</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="caregiver-roster">
+              <i class="fa-solid fa-address-book"></i>
+              <span>Client Roster</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="caregiver-shift">
+              <i class="fa-solid fa-business-time"></i>
+              <span>Shift Logs & EVV</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="caregiver-meds">
+              <i class="fa-solid fa-capsules"></i>
+              <span>Medication Checklist</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="caregiver-training">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>Training & Standards</span>
+            </a>
+          </div>
+
+          <!-- 3. Administrator Sidebar Navigation -->
+          <div class="role-nav-group d-none" id="navGroup-admin">
+            <div class="nav-section-title">Admin Management</div>
+            <a href="#" class="sidebar-link active" data-panel="admin-overview">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>System Overview</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="admin-caregivers">
+              <i class="fa-solid fa-user-nurse"></i>
+              <span>Caregiver Directory</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="admin-clients">
+              <i class="fa-solid fa-users"></i>
+              <span>Client Directory</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="admin-billing">
+              <i class="fa-solid fa-wallet"></i>
+              <span>Billing & Payroll</span>
+            </a>
+            <a href="#" class="sidebar-link" data-panel="admin-compliance">
+              <i class="fa-solid fa-clipboard-check"></i>
+              <span>Compliance & Audit</span>
+            </a>
+          </div>
+        </nav>
+
+        <!-- Quick Logout link -->
+        <div class="mt-auto border-top p-3 border-secondary-subtle">
+          <a
+            href="#"
+            class="btn btn-outline-danger w-100 logout-btn logout-btn-sidebar"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- --- Main Content Area --- -->
+      <main class="dashboard-content-area">
+        <!-- Top Sticky Header -->
+        <header class="dashboard-topbar">
+          <div class="topbar-left">
+            <button
+              type="button"
+              class="sidebar-toggle-btn"
+              id="sidebarCollapse"
+            >
+              <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="search-box-topbar d-none d-md-flex align-items-center">
+              <div class="input-group">
+                <span
+                  class="input-group-text bg-white border-end-0 text-muted"
+                  style="
+                    border-color: var(--border-color);
+                    border-radius: 30px 0 0 30px;
+                    padding-left: 1.25rem;
+                  "
+                >
+                  <i class="fa-solid fa-magnifying-glass text-teal"></i>
+                </span>
+                <input
+                  type="text"
+                  placeholder="Search portal contents..."
+                  class="form-control border-start-0 shadow-none"
+                  style="
+                    border-color: var(--border-color);
+                    border-radius: 0 30px 30px 0;
+                    font-size: 0.9rem;
+                    padding-right: 1.25rem;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Topbar Actions & Dropdown -->
+          <div class="topbar-right">
+            <!-- Notifications Badge -->
+            <div class="dropdown">
+              <div
+                class="notification-badge-wrapper"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-bell text-teal"></i>
+                <span class="badge">3</span>
+              </div>
+              <ul
+                class="dropdown-menu dropdown-menu-end dropdown-menu-profile py-2"
+                style="width: 320px"
+              >
+                <li class="px-3 py-2 border-bottom border-color">
+                  <h6 class="mb-0 fw-bold text-teal">
+                    <i class="fa-solid fa-bell-concierge me-2"></i>Recent
+                    Notifications
+                  </h6>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item py-2 border-bottom border-color"
+                    href="#"
+                  >
+                    <div class="d-flex gap-2">
+                      <i
+                        class="fa-solid fa-clipboard-list text-accent mt-1"
+                      ></i>
+                      <div>
+                        <p class="mb-0 fw-semibold text-slate small">
+                          Medication checklist updated
+                        </p>
+                        <small class="text-muted">10 mins ago</small>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item py-2 border-bottom border-color"
+                    href="#"
+                  >
+                    <div class="d-flex gap-2">
+                      <i
+                        class="fa-solid fa-location-crosshairs text-teal mt-1"
+                      ></i>
+                      <div>
+                        <p class="mb-0 fw-semibold text-slate small">
+                          Shift check-in location confirmed
+                        </p>
+                        <small class="text-muted">1 hour ago</small>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="#">
+                    <div class="d-flex gap-2">
+                      <i class="fa-solid fa-file-invoice text-success mt-1"></i>
+                      <div>
+                        <p class="mb-0 fw-semibold text-slate small">
+                          Monthly statement generated
+                        </p>
+                        <small class="text-muted">Yesterday</small>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Profile Settings Dropdown -->
+            <div class="dropdown">
+              <a
+                href="#"
+                class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle user-navbar-dropdown text-slate"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div
+                  class="user-avatar-placeholder"
+                  id="userNavbarAvatar"
+                  style="width: 36px; height: 36px; font-size: 1rem"
+                >
+                  U
+                </div>
+                <span
+                  class="d-none d-sm-inline fw-bold text-teal"
+                  id="userNavbarName"
+                  style="max-width: 100px"
+                  >User</span
+                >
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-profile">
+                <li class="px-4 py-2 border-bottom border-color">
+                  <div
+                    class="fw-bold text-teal-dark"
+                    id="dropdownEmail"
+                    style="word-break: break-all"
+                  >
+                    user@domain.com
+                  </div>
+                  <small class="text-muted fw-semibold" id="dropdownRole"
+                    >Care User</small
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="#">
+                    <i class="fa-regular fa-id-card me-2 text-teal"></i> My
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="#">
+                    <i class="fa-solid fa-sliders me-2 text-teal"></i> Settings
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider border-color" />
+                </li>
+                <li>
+                  <a class="dropdown-item py-2 text-danger logout-btn" href="#">
+                    <i class="fa-solid fa-right-from-bracket me-2"></i> Log Out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- --- Dashboard Body Contents --- -->
+        <div class="dashboard-body">
+          <!-- Dynamic Role Greeting Banner (Stunning Visual Gradient) -->
+          <div class="greeting-banner">
+            <div class="banner-bubble banner-bubble-1"></div>
+            <div class="banner-bubble banner-bubble-2"></div>
+            <h1 id="greetingTitle">Welcome back, User!</h1>
+            <p class="mb-2" id="greetingMessage">
+              Access your Stackly Care portal below. You can update schedules,
+              inspect health reports, and communicate directly with care
+              supervisors.
+            </p>
+            <div class="login-meta-text">
+              <i class="fa-solid fa-clock-rotate-left me-1"></i> Current Session
+              Started:
+              <span id="loginTimeText" class="text-white">Just now</span>
+            </div>
+          </div>
+
+          <!-- ============================================== -->
+          <!-- CLIENT / FAMILY PORTAL PANELS -->
+          <!-- ============================================== -->
+          <div class="role-panels d-none" id="panels-client">
+            <!-- Panel 1: Client Overview -->
+            <div class="dashboard-panel" id="panel-client-overview">
+              <div class="row g-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Blood Pressure</span>
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">122/80</div>
+                    <span class="vital-status normal"
+                      ><i class="fa-solid fa-circle-check"></i> BP Stable</span
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Blood Sugar</span>
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-droplet"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">
+                      98
+                      <small
+                        style="
+                          font-size: 0.8rem;
+                          font-weight: normal;
+                          color: var(--text-muted);
+                        "
+                        >mg/dL</small
+                      >
+                    </div>
+                    <span class="vital-status normal"
+                      ><i class="fa-solid fa-circle-check"></i> Glucose
+                      Normal</span
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-gold">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Next Nurse Visit</span>
+                      <div class="metric-icon-box bg-gold">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                      </div>
+                    </div>
+                    <div
+                      class="vital-value mb-1"
+                      style="font-size: 1.35rem; line-height: 1.5"
+                    >
+                      Today, 2:30 PM
+                    </div>
+                    <span class="vital-status warning"
+                      ><i class="fa-solid fa-hourglass-half"></i> In 3
+                      hours</span
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Care Plan Progress</span>
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-chart-line"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">85%</div>
+                    <div
+                      class="progress"
+                      style="height: 6px; background-color: var(--teal-xlight)"
+                    >
+                      <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        style="width: 85%"
+                        aria-valuenow="85"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Main Content Grid -->
+              <div class="row g-4">
+                <div class="col-12 col-lg-8">
+                  <div class="table-custom-wrapper">
+                    <div
+                      class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3"
+                    >
+                      <h5 class="table-title mb-0">
+                        Today's Care Activity Logs
+                      </h5>
+                      <button
+                        class="btn btn-sm btn-outline-teal font-secondary"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-pen-to-square me-1"></i>Request
+                        Revision
+                      </button>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th>Time Slot</th>
+                            <th>Care Task</th>
+                            <th>Assigned Nurse</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="font-monospace fw-semibold">08:00 AM</td>
+                            <td class="fw-medium">
+                              Breakfast preparation & morning cardiovascular
+                              medication verification
+                            </td>
+                            <td>
+                              <div
+                                class="caregiver-profile-sm d-flex align-items-center gap-2"
+                              >
+                                <img
+                                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop"
+                                  alt="Nurse avatar"
+                                />
+                                <span>Nurse Evelyn R.</span>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="badge-status-completed"
+                                ><i class="fa-solid fa-circle-check me-1"></i
+                                >Administered</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">11:00 AM</td>
+                            <td class="fw-medium">
+                              Guided outdoor mobility walk & leg strengthening
+                              exercises
+                            </td>
+                            <td>
+                              <div
+                                class="caregiver-profile-sm d-flex align-items-center gap-2"
+                              >
+                                <img
+                                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop"
+                                  alt="Nurse avatar"
+                                />
+                                <span>Nurse Evelyn R.</span>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="badge-status-completed"
+                                ><i class="fa-solid fa-circle-check me-1"></i
+                                >Completed</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">02:30 PM</td>
+                            <td class="fw-medium">
+                              Blood pressure diagnostics check & social
+                              cognitive check-in
+                            </td>
+                            <td>
+                              <div
+                                class="caregiver-profile-sm d-flex align-items-center gap-2"
+                              >
+                                <img
+                                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop"
+                                  alt="Nurse avatar"
+                                />
+                                <span>Nurse Evelyn R.</span>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="badge-status-pending"
+                                ><i class="fa-solid fa-hourglass-start me-1"></i
+                                >Scheduled</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">07:00 PM</td>
+                            <td class="fw-medium">
+                              Evening nutrition oversight & bedtime sedation
+                              routine support
+                            </td>
+                            <td>
+                              <div
+                                class="caregiver-profile-sm d-flex align-items-center gap-2"
+                              >
+                                <img
+                                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=100&auto=format&fit=crop"
+                                  alt="Nurse avatar"
+                                />
+                                <span>Nurse Samuel O.</span>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="badge-status-pending"
+                                ><i class="fa-solid fa-hourglass-start me-1"></i
+                                >Scheduled</span
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                  <!-- Custom Styled Active Care Team card -->
+                  <div class="card care-team-card border-0 mb-4">
+                    <div class="card-header-teal">
+                      <h6 class="mb-0 fw-bold">
+                        <i class="fa-solid fa-shield-heart me-2"></i>Active
+                        Caregivers
+                      </h6>
+                    </div>
+                    <div class="card-body p-4">
+                      <div
+                        class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-color"
+                      >
+                        <img
+                          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop"
+                          class="rounded-circle"
+                          style="
+                            width: 55px;
+                            height: 55px;
+                            object-fit: cover;
+                            border: 2px solid var(--teal-light);
+                          "
+                          alt="Evelyn avatar"
+                        />
+                        <div>
+                          <h6 class="mb-0 fw-bold text-teal-darker">
+                            Evelyn Rodriguez, RN
+                          </h6>
+                          <small class="text-muted fw-semibold"
+                            >Primary Care Specialist</small
+                          >
+                        </div>
+                      </div>
+                      <div class="mb-2">
+                        <small class="text-muted fw-semibold me-1"
+                          >Specialty:</small
+                        >
+                        <span
+                          class="badge bg-teal-xlight text-teal border border-teal-subtle"
+                          >Geriatric Care</span
+                        >
+                      </div>
+                      <div class="mb-4">
+                        <small class="text-muted fw-semibold me-1"
+                          >Direct Line:</small
+                        >
+                        <span
+                          class="d-block fw-bold text-teal-dark font-monospace"
+                          >+1 (555) 420-CARE</span
+                        >
+                      </div>
+                      <button
+                        class="btn btn-teal w-100 rounded-pill btn-dummy"
+                        type="button"
+                      >
+                        <i class="fa-regular fa-comments me-2"></i>Message
+                        Evelyn
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Custom Styled Emergency Card -->
+                  <div
+                    class="card emergency-card-accent border-0 p-4 text-center"
+                  >
+                    <div class="card-body p-0">
+                      <i
+                        class="fa-solid fa-phone-volume fs-2 text-danger mb-2"
+                      ></i>
+                      <h6 class="fw-bold mb-2">Emergency Care Line</h6>
+                      <p class="small text-muted mb-4">
+                        If you require immediate clinical assistance outside
+                        standard visits, call our hotline.
+                      </p>
+                      <a
+                        href="tel:18005553273"
+                        class="btn btn-emergency-call px-4 w-100 fw-bold"
+                        ><i class="fa-solid fa-phone-flip me-2"></i>Call
+                        Careline Now</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Client Schedule -->
+            <div class="dashboard-panel d-none" id="panel-client-schedule">
+              <div class="table-custom-wrapper mb-4">
+                <div
+                  class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3"
+                >
+                  <h5 class="table-title mb-0">
+                    <i class="fa-solid fa-calendar-days me-2"></i>Weekly Home
+                    Nursing Schedule
+                  </h5>
+                  <div class="d-flex gap-2">
+                    <button
+                      class="btn btn-sm btn-outline-teal btn-dummy"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-arrow-left me-1"></i> Prev Week
+                    </button>
+                    <button class="btn btn-sm btn-teal btn-dummy" type="button">
+                      Next Week <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered table-striped table-hover align-middle mb-0"
+                  >
+                    <thead class="table-light">
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th class="py-3 px-3">Day / Date</th>
+                        <th class="py-3 px-3">Care Hours</th>
+                        <th class="py-3 px-3">Assigned Staff</th>
+                        <th class="py-3 px-3">Primary Visit Objectives</th>
+                        <th class="py-3 px-3">Meal Preferences</th>
+                        <th class="py-3 px-3">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-bold px-3">Monday</td>
+                        <td class="font-monospace px-3">08:00 AM - 12:00 PM</td>
+                        <td class="fw-semibold text-teal px-3">
+                          Nurse Evelyn R.
+                        </td>
+                        <td class="px-3 text-slate">
+                          Patient hygiene verification, Metoprolol
+                          administration, outdoor stroll assistance
+                        </td>
+                        <td class="px-3 text-muted">
+                          Warm oatmeal & sliced peaches
+                        </td>
+                        <td class="px-3">
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Confirmed</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold px-3">Tuesday</td>
+                        <td class="font-monospace px-3">01:00 PM - 05:00 PM</td>
+                        <td class="fw-semibold text-teal px-3">
+                          Nurse Evelyn R.
+                        </td>
+                        <td class="px-3 text-slate">
+                          Vitals record checklist, Doctor clinical transport
+                          support, pharmacy run
+                        </td>
+                        <td class="px-3 text-muted">
+                          Steamed salmon & roasted broccoli
+                        </td>
+                        <td class="px-3">
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Confirmed</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold px-3">Wednesday</td>
+                        <td class="font-monospace px-3">08:00 AM - 12:00 PM</td>
+                        <td class="fw-semibold text-teal px-3">
+                          Nurse Evelyn R.
+                        </td>
+                        <td class="px-3 text-slate">
+                          Stretching physical therapy, cognitive puzzles,
+                          post-lunch vitals tracking
+                        </td>
+                        <td class="px-3 text-muted">
+                          Vegetable barley soup & bread toast
+                        </td>
+                        <td class="px-3">
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Confirmed</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold px-3">Thursday</td>
+                        <td class="font-monospace px-3">01:00 PM - 05:00 PM</td>
+                        <td class="fw-semibold text-teal px-3">
+                          Nurse Samuel O.
+                        </td>
+                        <td class="px-3 text-slate">
+                          Light indoor cleaning support, companion walks,
+                          checking medication box
+                        </td>
+                        <td class="px-3 text-muted">
+                          Mixed vegetable stir fry
+                        </td>
+                        <td class="px-3">
+                          <span
+                            class="badge bg-warning bg-opacity-15 text-warning border border-warning-subtle fw-semibold px-2 py-1"
+                            >Matching Staff</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold px-3">Friday</td>
+                        <td class="font-monospace px-3">08:00 AM - 12:00 PM</td>
+                        <td class="fw-semibold text-teal px-3">
+                          Nurse Evelyn R.
+                        </td>
+                        <td class="px-3 text-slate">
+                          Bi-weekly blood glucose audits, cognitive review,
+                          coordination check
+                        </td>
+                        <td class="px-3 text-muted">
+                          Scrambled eggs with toast
+                        </td>
+                        <td class="px-3">
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Confirmed</span
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: Client Reports -->
+            <div class="dashboard-panel d-none" id="panel-client-reports">
+              <div class="table-custom-wrapper">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+                >
+                  <h5 class="table-title mb-0">
+                    <i class="fa-solid fa-clipboard-list me-2"></i>Caregiver
+                    Shift Daily Log Sheets
+                  </h5>
+                  <button class="btn btn-teal btn-sm btn-dummy" type="button">
+                    <i class="fa-solid fa-file-pdf me-2"></i>Download PDF Ledger
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th>Date</th>
+                        <th>Caregiver Name</th>
+                        <th>Vitals Checked</th>
+                        <th>Drugs Managed</th>
+                        <th>Clinical Progression Summary</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-bold text-teal-dark font-monospace">
+                          July 30, 2026
+                        </td>
+                        <td class="fw-semibold">Evelyn Rodriguez, RN</td>
+                        <td class="font-monospace text-slate">
+                          122/81 mmHg | 72 bpm
+                        </td>
+                        <td class="text-slate">
+                          Metoprolol 50mg, Aspirin 81mg
+                        </td>
+                        <td class="text-muted small">
+                          Margaret was in very good spirits today. Assisted with
+                          morning hygiene. We completed a 15-minute walk around
+                          the courtyard. Fully consumed breakfast oatmeal.
+                          Supported rest period.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark font-monospace">
+                          July 29, 2026
+                        </td>
+                        <td class="fw-semibold">Evelyn Rodriguez, RN</td>
+                        <td class="font-monospace text-slate">
+                          124/83 mmHg | 74 bpm
+                        </td>
+                        <td class="text-slate">
+                          Metoprolol 50mg, Aspirin 81mg
+                        </td>
+                        <td class="text-muted small">
+                          Blood glucose was completely normal after lunch (105
+                          mg/dL). Assisted with memory recall exercises. Patient
+                          complained of lower back stiffness; applied warm gel
+                          massager.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark font-monospace">
+                          July 28, 2026
+                        </td>
+                        <td class="fw-semibold">Evelyn Rodriguez, RN</td>
+                        <td class="font-monospace text-slate">
+                          118/79 mmHg | 68 bpm
+                        </td>
+                        <td class="text-slate">
+                          Metoprolol 50mg, Aspirin 81mg
+                        </td>
+                        <td class="text-muted small">
+                          Morning diagnostic check. Vitals are stable and well
+                          within the normal index. Assisted with mobility.
+                          Shared family photo reviews. Assisted with light
+                          kitchen dishes.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark font-monospace">
+                          July 27, 2026
+                        </td>
+                        <td class="fw-semibold">Samuel Onyeka, RN</td>
+                        <td class="font-monospace text-slate">
+                          120/80 mmHg | 70 bpm
+                        </td>
+                        <td class="text-slate">
+                          Metoprolol 50mg, Multivitamins
+                        </td>
+                        <td class="text-muted small">
+                          Evening check-in visit. Prepared baked fish.
+                          Encouraged water intake. Supported night medication
+                          and preparation for bedtime. Settled into bed
+                          comfortably at 8:45 PM.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 4: Client Billing -->
+            <div class="dashboard-panel d-none" id="panel-client-billing">
+              <div class="row g-4 mb-4">
+                <div class="col-12 col-md-4">
+                  <div
+                    class="card border-0 shadow-sm p-4 bg-white"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <div
+                      class="text-muted small fw-bold text-uppercase tracking-wider"
+                    >
+                      Statement Balance
+                    </div>
+                    <div class="fs-1 fw-bold text-teal-dark mt-2">$240.00</div>
+                    <div class="small text-danger fw-semibold mt-1">
+                      <i class="fa-solid fa-calendar-day me-1"></i> Due in 5
+                      Days (Aug 5)
+                    </div>
+                    <button
+                      class="btn btn-teal w-100 mt-4 rounded-pill btn-dummy"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-wallet me-2"></i>Pay Statement Now
+                    </button>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div
+                    class="card border-0 shadow-sm p-4 bg-white"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <div
+                      class="text-muted small fw-bold text-uppercase tracking-wider"
+                    >
+                      Insurance Coverage
+                    </div>
+                    <div class="fs-1 fw-bold text-success mt-2">80% / 20%</div>
+                    <div class="small text-muted fw-semibold mt-1">
+                      <i class="fa-solid fa-circle-check text-success me-1"></i>
+                      NDIS / Medicare Active
+                    </div>
+                    <button
+                      class="btn btn-outline-teal w-100 mt-4 rounded-pill btn-dummy"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-file-shield me-2"></i>Manage
+                      Coverage
+                    </button>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div
+                    class="card border-0 shadow-sm p-4 bg-white"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <div
+                      class="text-muted small fw-bold text-uppercase tracking-wider"
+                    >
+                      Auto-Debit Billing
+                    </div>
+                    <div class="fs-1 fw-bold text-slate mt-2">Aug 15</div>
+                    <div class="small text-muted fw-semibold mt-1">
+                      <i class="fa-solid fa-credit-card me-1"></i> Visa ending
+                      in 4292
+                    </div>
+                    <button
+                      class="btn btn-outline-secondary w-100 mt-4 rounded-pill btn-dummy"
+                      style="border-radius: 50px"
+                      type="button"
+                    >
+                      Change Payment
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-custom-wrapper">
+                <h5 class="table-title mb-3">
+                  <i class="fa-solid fa-receipt me-2"></i>Invoice Settlement
+                  Ledger
+                </h5>
+                <div class="table-responsive">
+                  <table class="table table-striped align-middle">
+                    <thead>
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th>Invoice ID</th>
+                        <th>Billing Cycle Period</th>
+                        <th>Amount Paid</th>
+                        <th>Payer Breakdown</th>
+                        <th>Status</th>
+                        <th>Receipt</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="font-monospace fw-bold">INV-2026-07A</td>
+                        <td class="text-slate">July 1 - July 15, 2026</td>
+                        <td class="fw-semibold">$840.00</td>
+                        <td class="text-muted">
+                          NDIS Medicare (80%) + Co-pay (20%)
+                        </td>
+                        <td>
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Settled</span
+                          >
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="font-monospace fw-bold">INV-2026-06B</td>
+                        <td class="text-slate">June 16 - June 30, 2026</td>
+                        <td class="fw-semibold">$960.00</td>
+                        <td class="text-muted">
+                          NDIS Government Support (100%)
+                        </td>
+                        <td>
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Settled</span
+                          >
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="font-monospace fw-bold">INV-2026-06A</td>
+                        <td class="text-slate">June 1 - June 15, 2026</td>
+                        <td class="fw-semibold">$880.00</td>
+                        <td class="text-muted">
+                          Private Health Insurance Plan Coverage
+                        </td>
+                        <td>
+                          <span
+                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            >Settled</span
+                          >
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 5: Client Support -->
+            <div class="dashboard-panel d-none" id="panel-client-support">
+              <div class="row g-4">
+                <div class="col-12 col-lg-7">
+                  <div class="table-custom-wrapper">
+                    <h5 class="table-title mb-3">
+                      <i class="fa-solid fa-paper-plane me-2"></i>Contact Care
+                      Supervisor
+                    </h5>
+                    <form id="clientSupportForm" class="btn-dummy">
+                      <div class="mb-3">
+                        <label class="form-label-custom mb-1"
+                          >Select Topic</label
+                        >
+                        <select class="form-select border-color">
+                          <option>Schedule Revision / Vacation Request</option>
+                          <option>Caregiver Feedback or Match Request</option>
+                          <option>Medication Plan Updates</option>
+                          <option>Billing, Invoices & Co-pays</option>
+                          <option>General Support Query</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label-custom mb-1"
+                          >Detailed Message</label
+                        >
+                        <textarea
+                          class="form-control border-color"
+                          rows="5"
+                          placeholder="Specify requirements... Our clinical supervisors review tickets within 2 hours."
+                        ></textarea>
+                      </div>
+                      <button
+                        class="btn btn-teal rounded-pill px-4"
+                        type="submit"
+                      >
+                        Submit Request
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-5">
+                  <div
+                    class="card border-0 shadow-sm p-4 bg-white"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <h5 class="table-title mb-3">Direct Contacts</h5>
+                    <div
+                      class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-color"
+                    >
+                      <div
+                        class="bg-teal-xlight text-teal rounded-circle d-flex align-items-center justify-content-center"
+                        style="
+                          width: 48px;
+                          height: 48px;
+                          border: 1px solid rgba(15, 118, 110, 0.15);
+                        "
+                      >
+                        <i class="fa-solid fa-user-shield fs-5"></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0 fw-bold text-teal-darker">
+                          Clara Vance
+                        </h6>
+                        <small class="text-muted fw-semibold"
+                          >Senior Case Manager</small
+                        >
+                        <div class="small fw-semibold text-teal font-monospace">
+                          clara.vance@stacklycare.com
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                      <div
+                        class="bg-accent-xlight text-accent rounded-circle d-flex align-items-center justify-content-center"
+                        style="
+                          width: 48px;
+                          height: 48px;
+                          border: 1px solid rgba(217, 119, 6, 0.15);
+                        "
+                      >
+                        <i class="fa-solid fa-credit-card fs-5"></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0 fw-bold text-slate">
+                          Billing Help Desk
+                        </h6>
+                        <small class="text-muted fw-semibold"
+                          >Accounts Coordinator</small
+                        >
+                        <div
+                          class="small fw-semibold text-accent font-monospace"
+                        >
+                          billing@stacklycare.com
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="border-color" />
+                    <div class="text-center p-3 bg-warm rounded-3">
+                      <div class="small text-muted mb-1">
+                        <i class="fa-solid fa-clock me-1"></i> Office Hours
+                      </div>
+                      <div class="fw-bold text-teal-dark small">
+                        Mon-Fri: 8:00 AM - 6:00 PM EST
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================== -->
+          <!-- CAREGIVER / NURSE PORTAL PANELS -->
+          <!-- ============================================== -->
+          <div class="role-panels d-none" id="panels-caregiver">
+            <!-- Panel 1: Caregiver Overview -->
+            <div class="dashboard-panel" id="panel-caregiver-overview">
+              <div class="row g-4 mb-4">
+                <div class="col-12 col-lg-4">
+                  <!-- Clock In/Out Widget -->
+                  <div class="clock-widget">
+                    <div
+                      class="text-muted small fw-bold text-uppercase tracking-wider mb-2"
+                    >
+                      Visit Verification (EVV)
+                    </div>
+                    <div class="clock-timer mb-3" id="clockDisplay">
+                      00:00:00
+                    </div>
+                    <div
+                      class="clock-actions d-flex justify-content-center gap-2"
+                    >
+                      <button
+                        class="btn btn-teal"
+                        id="clockInBtn"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-play me-2"></i>Clock In
+                      </button>
+                      <button
+                        class="btn btn-outline-danger d-none"
+                        id="clockOutBtn"
+                        style="border-radius: 50px"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-stop me-2"></i>Clock Out
+                      </button>
+                    </div>
+                    <div class="mt-3 small" id="clockStatusText">
+                      Status: Not Clocked In
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="metric-card metric-card-accent-gold">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Assigned Shifts</span>
+                      <div class="metric-icon-box bg-gold">
+                        <i class="fa-solid fa-user-check"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">3 Visits</div>
+                    <div class="small text-muted fw-semibold">
+                      <i class="fa-solid fa-circle-check text-success"></i> 1
+                      Logged | 2 Scheduled
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title"
+                        >Worked Hours (Weekly)</span
+                      >
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-business-time"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">28.5 hrs</div>
+                    <div class="small text-teal fw-semibold">
+                      <i class="fa-solid fa-gauge-high"></i> 82% of weekly
+                      milestone (35h)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shift Overview -->
+              <div class="row g-4">
+                <div class="col-12 col-lg-8">
+                  <div class="table-custom-wrapper">
+                    <h5 class="table-title mb-3">
+                      Today's Assigned Patient Shifts
+                    </h5>
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th>Time Slot</th>
+                            <th>Patient / Address</th>
+                            <th>Care Objectives</th>
+                            <th>Medical Warnings</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="font-monospace fw-semibold">
+                              08:00 AM - 12:00 PM
+                            </td>
+                            <td>
+                              <div>
+                                <h6 class="mb-0 fw-bold text-teal-darker">
+                                  Margaret Vance (84)
+                                </h6>
+                                <small class="text-muted fw-semibold"
+                                  ><i class="fa-solid fa-location-dot me-1"></i>
+                                  492 Oak Ridge Dr.</small
+                                >
+                              </div>
+                            </td>
+                            <td>
+                              <span
+                                class="badge bg-teal-xlight text-teal border border-teal-subtle"
+                                >Geriatric Care plan</span
+                              >
+                            </td>
+                            <td>
+                              <span class="text-danger small fw-bold"
+                                ><i
+                                  class="fa-solid fa-triangle-exclamation me-1"
+                                ></i>
+                                Cardiovascular monitoring required</span
+                              >
+                            </td>
+                            <td>
+                              <button
+                                class="btn btn-sm btn-success btn-dummy"
+                                type="button"
+                              >
+                                <i class="fa-solid fa-check"></i> Shift Finished
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">
+                              01:00 PM - 04:00 PM
+                            </td>
+                            <td>
+                              <div>
+                                <h6 class="mb-0 fw-bold text-teal-darker">
+                                  James Rutherford (79)
+                                </h6>
+                                <small class="text-muted fw-semibold"
+                                  ><i class="fa-solid fa-location-dot me-1"></i>
+                                  102 Whispering Pines Rd.</small
+                                >
+                              </div>
+                            </td>
+                            <td>
+                              <span
+                                class="badge bg-teal-xlight text-teal border border-teal-subtle"
+                                >Dementia Companionship</span
+                              >
+                            </td>
+                            <td>
+                              <span class="text-warning small fw-bold"
+                                ><i
+                                  class="fa-solid fa-circle-exclamation me-1"
+                                ></i>
+                                Routine memory recall assistance</span
+                              >
+                            </td>
+                            <td>
+                              <button
+                                class="btn btn-sm btn-teal btn-dummy"
+                                type="button"
+                              >
+                                Begin Shift
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">
+                              05:30 PM - 08:30 PM
+                            </td>
+                            <td>
+                              <div>
+                                <h6 class="mb-0 fw-bold text-teal-darker">
+                                  Arthur Pendelton (82)
+                                </h6>
+                                <small class="text-muted fw-semibold"
+                                  ><i class="fa-solid fa-location-dot me-1"></i>
+                                  85 Maple Leaf St.</small
+                                >
+                              </div>
+                            </td>
+                            <td>
+                              <span
+                                class="badge bg-teal-xlight text-teal border border-teal-subtle"
+                                >Rehabilitative Wound Care</span
+                              >
+                            </td>
+                            <td>
+                              <span class="text-muted small"
+                                >Wound clean and evening nutrition prep</span
+                              >
+                            </td>
+                            <td>
+                              <button
+                                class="btn btn-sm btn-outline-teal btn-dummy"
+                                type="button"
+                              >
+                                Shift details
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                  <div
+                    class="card border-0 shadow-sm p-4 bg-white"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <h6 class="fw-bold text-teal border-bottom pb-2 mb-3">
+                      <i class="fa-solid fa-circle-exclamation me-2"></i>Nursing
+                      Alerts
+                    </h6>
+                    <div
+                      class="p-3 bg-accent-xlight border border-warning-subtle rounded-3 small mb-3 text-slate"
+                    >
+                      <strong>Compulsory EVV Logging:</strong> Keep location
+                      enabled when checking in to patients. Manual check-ins
+                      must be audited by case managers.
+                    </div>
+                    <div class="small mb-2 text-muted fw-semibold">
+                      Next In-service Training:
+                    </div>
+                    <div class="fw-bold text-teal-dark mb-4">
+                      <i class="fa-solid fa-chalkboard-user me-2"></i>
+                      Wednesday, Aug 5 @ 4:00 PM
+                    </div>
+                    <button
+                      class="btn btn-outline-teal w-100 rounded-pill btn-dummy"
+                      type="button"
+                    >
+                      Open Training Calendar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Caregiver Roster -->
+            <div class="dashboard-panel d-none" id="panel-caregiver-roster">
+              <div class="table-custom-wrapper">
+                <h5 class="table-title mb-4">
+                  <i class="fa-solid fa-users me-2"></i>Patient Roster & Care
+                  Protocols
+                </h5>
+                <div class="row g-4">
+                  <div class="col-12 col-md-6">
+                    <div
+                      class="card border border-color rounded-3 p-4 h-100 bg-white"
+                      style="border-radius: 20px !important"
+                    >
+                      <div
+                        class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-color"
+                      >
+                        <h6 class="fw-bold text-teal-darker mb-0">
+                          Margaret Vance (Age: 84)
+                        </h6>
+                        <span
+                          class="badge bg-success bg-opacity-10 text-success border border-success-subtle px-2 py-1"
+                          >Active Case</span
+                        >
+                      </div>
+                      <ul class="list-unstyled small text-muted mb-4">
+                        <li class="mb-2">
+                          <strong>Primary Doctor:</strong> Dr. Raymond Shaw
+                          (Cardiology)
+                        </li>
+                        <li class="mb-2">
+                          <strong>Known Allergies:</strong> Penicillin,
+                          Shellfish
+                        </li>
+                        <li class="mb-2">
+                          <strong>Emergency Contact:</strong> Sarah Vance
+                          (Daughter) -
+                          <span class="text-teal font-monospace"
+                            >+1 (555) 302-3922</span
+                          >
+                        </li>
+                        <li class="mb-2">
+                          <strong>Client Address:</strong> 492 Oak Ridge Dr.,
+                          Rochester
+                        </li>
+                      </ul>
+                      <div class="d-flex gap-2">
+                        <button
+                          class="btn btn-sm btn-teal btn-dummy w-100"
+                          type="button"
+                        >
+                          Care Plan Plan
+                        </button>
+                        <button
+                          class="btn btn-sm btn-outline-teal btn-dummy w-100"
+                          type="button"
+                        >
+                          Health Vitals Log
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div
+                      class="card border border-color rounded-3 p-4 h-100 bg-white"
+                      style="border-radius: 20px !important"
+                    >
+                      <div
+                        class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-color"
+                      >
+                        <h6 class="fw-bold text-teal-darker mb-0">
+                          James Rutherford (Age: 79)
+                        </h6>
+                        <span
+                          class="badge bg-success bg-opacity-10 text-success border border-success-subtle px-2 py-1"
+                          >Active Case</span
+                        >
+                      </div>
+                      <ul class="list-unstyled small text-muted mb-4">
+                        <li class="mb-2">
+                          <strong>Primary Doctor:</strong> Dr. Helena Troy
+                          (Neurology)
+                        </li>
+                        <li class="mb-2">
+                          <strong>Known Allergies:</strong> None reported
+                        </li>
+                        <li class="mb-2">
+                          <strong>Emergency Contact:</strong> Frank Rutherford
+                          (Son) -
+                          <span class="text-teal font-monospace"
+                            >+1 (555) 902-1202</span
+                          >
+                        </li>
+                        <li class="mb-2">
+                          <strong>Client Address:</strong> 102 Whispering Pines
+                          Rd.
+                        </li>
+                      </ul>
+                      <div class="d-flex gap-2">
+                        <button
+                          class="btn btn-sm btn-teal btn-dummy w-100"
+                          type="button"
+                        >
+                          Care Plan Plan
+                        </button>
+                        <button
+                          class="btn btn-sm btn-outline-teal btn-dummy w-100"
+                          type="button"
+                        >
+                          Health Vitals Log
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: Caregiver Shift Logs -->
+            <div class="dashboard-panel d-none" id="panel-caregiver-shift">
+              <div class="row g-4">
+                <div class="col-12 col-lg-5">
+                  <div class="table-custom-wrapper">
+                    <h5 class="table-title mb-3">Record Daily Shift Details</h5>
+                    <form id="shiftLogForm" class="btn-dummy">
+                      <div class="mb-3">
+                        <label class="form-label-custom mb-1"
+                          >Select Client</label
+                        >
+                        <select class="form-select border-color">
+                          <option>Margaret Vance</option>
+                          <option>James Rutherford</option>
+                          <option>Arthur Pendelton</option>
+                        </select>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col">
+                          <label class="form-label-custom mb-1">Date</label>
+                          <input
+                            type="date"
+                            class="form-control border-color"
+                            required
+                          />
+                        </div>
+                        <div class="col">
+                          <label class="form-label-custom mb-1"
+                            >Mileage (mi)</label
+                          >
+                          <input
+                            type="number"
+                            class="form-control border-color"
+                            placeholder="e.g. 12"
+                            min="0"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label-custom mb-1"
+                          >Detailed Shift Narrative Notes</label
+                        >
+                        <textarea
+                          class="form-control border-color"
+                          rows="4"
+                          placeholder="Log patient nutritional intake, vital metrics, physical therapy completed, medication checks, and general mood..."
+                          required
+                        ></textarea>
+                      </div>
+                      <button
+                        class="btn btn-teal w-100 rounded-pill"
+                        type="submit"
+                      >
+                        Submit Log verification
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                  <div class="table-custom-wrapper">
+                    <h5 class="table-title mb-3">Recent Shifts Logged</h5>
+                    <div class="table-responsive">
+                      <table
+                        class="table table-striped align-middle small mb-0"
+                      >
+                        <thead>
+                          <tr
+                            class="text-teal-darker border-bottom border-teal"
+                          >
+                            <th>Date</th>
+                            <th>Client Name</th>
+                            <th>Hours Logged</th>
+                            <th>Travel Mileage</th>
+                            <th>EVV status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="font-monospace fw-semibold">
+                              July 30, 2026
+                            </td>
+                            <td>Margaret Vance</td>
+                            <td class="font-monospace">4.0 hrs</td>
+                            <td>12 miles</td>
+                            <td>
+                              <span
+                                class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                >Approved</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">
+                              July 29, 2026
+                            </td>
+                            <td>James Rutherford</td>
+                            <td class="font-monospace">3.0 hrs</td>
+                            <td>18 miles</td>
+                            <td>
+                              <span
+                                class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                >Approved</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="font-monospace fw-semibold">
+                              July 28, 2026
+                            </td>
+                            <td>Margaret Vance</td>
+                            <td class="font-monospace">4.0 hrs</td>
+                            <td>12 miles</td>
+                            <td>
+                              <span
+                                class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                >Approved</span
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 4: Caregiver Meds Checklist -->
+            <div class="dashboard-panel d-none" id="panel-caregiver-meds">
+              <div class="table-custom-wrapper">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2"
+                >
+                  <h5 class="table-title mb-0">
+                    <i class="fa-solid fa-capsules me-2"></i>Patient Medication
+                    Log Checklist
+                  </h5>
+                  <span
+                    class="badge bg-danger bg-opacity-15 text-danger border border-danger-subtle fw-bold px-3 py-1"
+                    >Critical Nurse Routine</span
+                  >
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th>Patient</th>
+                        <th>Scheduled Time</th>
+                        <th>Medication & Dose</th>
+                        <th>Route</th>
+                        <th>Specific Instructions</th>
+                        <th>Confirm status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Margaret Vance</td>
+                        <td class="font-monospace fw-semibold">08:30 AM</td>
+                        <td>Metoprolol 50mg</td>
+                        <td>Oral with fluids</td>
+                        <td>
+                          Take with or immediately post meal. Log patient pulse
+                          before.
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-success btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-circle-check"></i> Logged
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Margaret Vance</td>
+                        <td class="font-monospace fw-semibold">09:00 AM</td>
+                        <td>Aspirin 81mg (Low Dose)</td>
+                        <td>Oral</td>
+                        <td>
+                          Blood thinner. Monitor for signs of gastric
+                          discomfort.
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-success btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-circle-check"></i> Logged
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">James Rutherford</td>
+                        <td class="font-monospace fw-semibold">02:00 PM</td>
+                        <td>Donepezil 10mg (Aricept)</td>
+                        <td>Oral</td>
+                        <td>Dementia support. Administer with light snack.</td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-teal btn-dummy"
+                            type="button"
+                          >
+                            Record Admin
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Arthur Pendelton</td>
+                        <td class="font-monospace fw-semibold">06:00 PM</td>
+                        <td>Gabapentin 300mg</td>
+                        <td>Oral</td>
+                        <td>
+                          Neuropathy treatment. Avoid co-administering with
+                          antacids.
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-secondary btn-dummy"
+                            style="border-radius: 50px"
+                            type="button"
+                          >
+                            Not Due
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 5: Caregiver Training -->
+            <div class="dashboard-panel d-none" id="panel-caregiver-training">
+              <div class="row g-4">
+                <div class="col-12 col-md-7">
+                  <div class="table-custom-wrapper h-100">
+                    <h5 class="table-title mb-3">
+                      Required Compliance Licensures
+                    </h5>
+                    <ul class="list-group list-group-flush">
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-3"
+                      >
+                        <div>
+                          <h6 class="mb-0 fw-bold text-teal-dark">
+                            CPR & First Aid Certification
+                          </h6>
+                          <small class="text-muted fw-semibold"
+                            >American Heart Association Approved</small
+                          >
+                        </div>
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          >Valid (Exp: Oct 2027)</span
+                        >
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-3"
+                      >
+                        <div>
+                          <h6 class="mb-0 fw-bold text-teal-dark">
+                            Registered Nurse (RN) Licence
+                          </h6>
+                          <small class="text-muted fw-semibold"
+                            >State Board of Nursing Registry #RN-39482</small
+                          >
+                        </div>
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          >Valid (Exp: Dec 2026)</span
+                        >
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-3"
+                      >
+                        <div>
+                          <h6 class="mb-0 fw-bold text-teal-dark">
+                            Geriatric Cognitive & Dementia Care
+                          </h6>
+                          <small class="text-muted fw-semibold"
+                            >Internal Agency Training Module 3</small
+                          >
+                        </div>
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          >Valid (Exp: Aug 2028)</span
+                        >
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-3"
+                      >
+                        <div>
+                          <h6 class="mb-0 fw-bold text-teal-dark">
+                            NDIS Worker Screening Clearance
+                          </h6>
+                          <small class="text-muted fw-semibold"
+                            >National Criminal Record Check</small
+                          >
+                        </div>
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          >Valid (Exp: Mar 2029)</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 col-md-5">
+                  <div
+                    class="card border-0 shadow-sm p-4 bg-white h-100"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <h5 class="table-title mb-3">Guidelines & Manuals</h5>
+                    <p class="small text-muted mb-4">
+                      Refer to approved home nursing guides to guarantee
+                      compliance with regional healthcare audit criteria.
+                    </p>
+                    <div
+                      class="list-group list-group-flush border-top border-color"
+                    >
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-0 border-bottom border-color btn-dummy"
+                      >
+                        <span class="fw-semibold text-slate"
+                          ><i class="fa-solid fa-file-pdf text-danger me-2"></i
+                          >Hand Hygiene Guidelines</span
+                        >
+                        <i class="fa-solid fa-download text-muted"></i>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-0 border-bottom border-color btn-dummy"
+                      >
+                        <span class="fw-semibold text-slate"
+                          ><i class="fa-solid fa-file-pdf text-danger me-2"></i
+                          >Medication Protocol Logs</span
+                        >
+                        <i class="fa-solid fa-download text-muted"></i>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-0 border-bottom-0 btn-dummy"
+                      >
+                        <span class="fw-semibold text-slate"
+                          ><i class="fa-solid fa-file-pdf text-danger me-2"></i
+                          >Emergency Wound Care</span
+                        >
+                        <i class="fa-solid fa-download text-muted"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================== -->
+          <!-- ADMINISTRATOR PORTAL PANELS -->
+          <!-- ============================================== -->
+          <div class="role-panels d-none" id="panels-admin">
+            <!-- Panel 1: Admin Overview -->
+            <div class="dashboard-panel" id="panel-admin-overview">
+              <div class="row g-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Registered Clients</span>
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-house-chimney-medical"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">48</div>
+                    <span class="small text-success fw-semibold"
+                      ><i class="fa-solid fa-arrow-trend-up"></i> +4 this
+                      month</span
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">On-Duty Caregivers</span>
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-user-nurse"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">14 Staff</div>
+                    <span class="small text-muted fw-semibold"
+                      ><i class="fa-solid fa-circle text-success me-1"></i> All
+                      shifts occupied</span
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-gold">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Support Tickets</span>
+                      <div class="metric-icon-box bg-gold">
+                        <i class="fa-solid fa-headset"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">3 Tickets</div>
+                    <span class="small text-warning fw-bold"
+                      ><i class="fa-solid fa-circle-exclamation me-1"></i>
+                      Action Required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="metric-card metric-card-accent-teal">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <span class="metric-card-title">Billed This Period</span>
+                      <div class="metric-icon-box bg-teal">
+                        <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                      </div>
+                    </div>
+                    <div class="vital-value mb-1">$42,900</div>
+                    <span class="small text-success fw-semibold"
+                      ><i class="fa-solid fa-circle-check me-1"></i> 94%
+                      collected</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Admin Operational Tables -->
+              <div class="row g-4">
+                <div class="col-12 col-lg-8">
+                  <div class="table-custom-wrapper">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                      <h5 class="table-title mb-0">
+                        Active shift tracker check-ins
+                      </h5>
+                      <span
+                        class="badge bg-teal bg-opacity-10 text-teal border border-teal-subtle px-2 py-1 fw-bold"
+                        >Live</span
+                      >
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-custom">
+                        <thead>
+                          <tr>
+                            <th>Caregiver</th>
+                            <th>Patient / Destination</th>
+                            <th>Check-In</th>
+                            <th>GPS Verification</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="fw-bold">Evelyn Rodriguez, RN</td>
+                            <td class="text-slate">
+                              Margaret Vance (492 Oak Ridge Dr.)
+                            </td>
+                            <td
+                              class="font-monospace text-teal-dark fw-semibold"
+                            >
+                              08:02 AM
+                            </td>
+                            <td>
+                              <span class="text-success small fw-bold"
+                                ><i class="fa-solid fa-location-arrow me-1"></i>
+                                Verified (0.01mi margin)</span
+                              >
+                            </td>
+                            <td>
+                              <span
+                                class="badge bg-success bg-opacity-10 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                >Clocked In</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="fw-bold">Samuel Onyeka, RN</td>
+                            <td class="text-slate">
+                              Arthur Pendelton (85 Maple Leaf St.)
+                            </td>
+                            <td
+                              class="font-monospace text-teal-dark fw-semibold"
+                            >
+                              09:15 AM
+                            </td>
+                            <td>
+                              <span class="text-success small fw-bold"
+                                ><i class="fa-solid fa-location-arrow me-1"></i>
+                                Verified (0.04mi margin)</span
+                              >
+                            </td>
+                            <td>
+                              <span
+                                class="badge bg-success bg-opacity-10 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                >Clocked In</span
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="fw-bold">Patricia Kelly, LPN</td>
+                            <td class="text-slate">
+                              Eleanor Vance (12 Whispering Pines Rd.)
+                            </td>
+                            <td
+                              class="font-monospace text-teal-dark fw-semibold"
+                            >
+                              09:58 AM
+                            </td>
+                            <td>
+                              <span class="text-danger small fw-bold"
+                                ><i
+                                  class="fa-solid fa-triangle-exclamation me-1"
+                                ></i>
+                                Check-in Bypass (Manual)</span
+                              >
+                            </td>
+                            <td>
+                              <span
+                                class="badge bg-warning bg-opacity-15 text-warning border border-warning-subtle fw-semibold px-2 py-1"
+                                >Review Required</span
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                  <div
+                    class="card border-0 shadow-sm p-4 h-100 bg-white"
+                    style="
+                      border-radius: 20px;
+                      border: 1px solid var(--border-color) !important;
+                    "
+                  >
+                    <h6 class="fw-bold text-teal border-bottom pb-2 mb-3">
+                      <i class="fa-solid fa-sliders me-2"></i>Administrative
+                      Actions
+                    </h6>
+                    <div class="d-grid gap-2 mt-2">
+                      <button
+                        class="btn btn-teal text-start btn-dummy"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-user-plus me-2"></i>Onboard New
+                        Patient
+                      </button>
+                      <button
+                        class="btn btn-outline-teal text-start btn-dummy"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-user-shield me-2"></i>Audit Staff
+                        Certifications
+                      </button>
+                      <button
+                        class="btn btn-outline-teal text-start btn-dummy"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-calendar-plus me-2"></i>Alter
+                        Schedule Templates
+                      </button>
+                      <button
+                        class="btn btn-outline-secondary text-start btn-dummy"
+                        style="border-radius: 50px"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-receipt me-2"></i>Run Payroll
+                        cycles
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Admin Caregiver Directory -->
+            <div class="dashboard-panel d-none" id="panel-admin-caregivers">
+              <div class="table-custom-wrapper">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+                >
+                  <h5 class="table-title mb-0">
+                    <i class="fa-solid fa-user-nurse me-2"></i>Registered Care
+                    Staff Directory
+                  </h5>
+                  <button class="btn btn-teal btn-sm btn-dummy" type="button">
+                    <i class="fa-solid fa-user-plus me-1"></i>Register Caregiver
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th>Staff Member</th>
+                        <th>Licensure Classification</th>
+                        <th>Contract Hours</th>
+                        <th>Assigned Clients</th>
+                        <th>Licence Expiry</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Evelyn Rodriguez</td>
+                        <td class="fw-semibold">Registered Nurse (RN)</td>
+                        <td class="font-monospace">38 hrs / week</td>
+                        <td class="text-slate">
+                          Margaret Vance, James Rutherford
+                        </td>
+                        <td class="font-monospace text-success fw-bold">
+                          Dec 2026
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Samuel Onyeka</td>
+                        <td class="fw-semibold">Registered Nurse (RN)</td>
+                        <td class="font-monospace">32 hrs / week</td>
+                        <td class="text-slate">Arthur Pendelton</td>
+                        <td class="font-monospace text-success fw-bold">
+                          Mar 2027
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Patricia Kelly</td>
+                        <td class="fw-semibold">
+                          Licensed Practical Nurse (LPN)
+                        </td>
+                        <td class="font-monospace">24 hrs / week</td>
+                        <td class="text-slate">
+                          Eleanor Vance, Robert Jenkins
+                        </td>
+                        <td class="font-monospace text-danger fw-bold">
+                          Expired (July 2026)
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-danger btn-dummy"
+                            type="button"
+                          >
+                            Audit Licence
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: Admin Client Directory -->
+            <div class="dashboard-panel d-none" id="panel-admin-clients">
+              <div class="table-custom-wrapper">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+                >
+                  <h5 class="table-title mb-0">
+                    <i class="fa-solid fa-users me-2"></i>Active Agency Clients
+                  </h5>
+                  <button class="btn btn-teal btn-sm btn-dummy" type="button">
+                    <i class="fa-solid fa-plus me-1"></i>Register Client
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th>Client Name</th>
+                        <th>Age</th>
+                        <th>Assigned Staff</th>
+                        <th>Subscription Plan type</th>
+                        <th>Outstanding Statement</th>
+                        <th>Management</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Margaret Vance</td>
+                        <td class="fw-semibold">84</td>
+                        <td class="fw-medium">Evelyn Rodriguez</td>
+                        <td>Comprehensive Geriatric Plan (24h/wk)</td>
+                        <td class="font-monospace text-success fw-bold">
+                          $0.00
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            Configure
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">James Rutherford</td>
+                        <td class="fw-semibold">79</td>
+                        <td class="fw-medium">Evelyn Rodriguez</td>
+                        <td>Dementia Companionship Care (15h/wk)</td>
+                        <td class="font-monospace text-danger fw-bold">
+                          $240.00
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            Configure
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Arthur Pendelton</td>
+                        <td class="fw-semibold">82</td>
+                        <td class="fw-medium">Samuel Onyeka</td>
+                        <td>Post-Stroke Rehabilitation Care (12h/wk)</td>
+                        <td class="font-monospace text-success fw-bold">
+                          $0.00
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-teal btn-dummy"
+                            type="button"
+                          >
+                            Configure
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 4: Admin Billing & Payroll -->
+            <div class="dashboard-panel d-none" id="panel-admin-billing">
+              <div class="table-custom-wrapper">
+                <h5 class="table-title mb-4">
+                  <i class="fa-solid fa-file-invoice-dollar me-2"></i>Caregiver
+                  Payroll & Statement Runs
+                </h5>
+                <div class="table-responsive">
+                  <table class="table table-striped align-middle">
+                    <thead>
+                      <tr class="text-teal-darker border-bottom border-teal">
+                        <th>Staff Member</th>
+                        <th>Class</th>
+                        <th>Logged Hours (Period)</th>
+                        <th>Hourly Pay Rate</th>
+                        <th>Gross Outflow Balance</th>
+                        <th>Approval Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Evelyn Rodriguez</td>
+                        <td class="fw-semibold">Registered Nurse (RN)</td>
+                        <td class="font-monospace">74 hours</td>
+                        <td class="font-monospace text-slate">$45.00 / hr</td>
+                        <td class="fw-bold text-teal-dark">$3,330.00</td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-success btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-circle-check me-1"></i>
+                            Approve Payroll
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Samuel Onyeka</td>
+                        <td class="fw-semibold">Registered Nurse (RN)</td>
+                        <td class="font-monospace">64 hours</td>
+                        <td class="font-monospace text-slate">$45.00 / hr</td>
+                        <td class="fw-bold text-teal-dark">$2,880.00</td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-success btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-circle-check me-1"></i>
+                            Approve Payroll
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="fw-bold text-teal-dark">Patricia Kelly</td>
+                        <td class="fw-semibold">
+                          Licensed Practical Nurse (LPN)
+                        </td>
+                        <td class="font-monospace">48 hours</td>
+                        <td class="font-monospace text-slate">$32.00 / hr</td>
+                        <td class="fw-bold text-teal-dark">$1,536.00</td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-warning btn-dummy"
+                            type="button"
+                          >
+                            <i class="fa-solid fa-circle-pause me-1"></i> Hold
+                            Review
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 5: Admin Compliance -->
+            <div class="dashboard-panel d-none" id="panel-admin-compliance">
+              <div class="row g-4">
+                <div class="col-12 col-md-6">
+                  <div class="table-custom-wrapper h-100">
+                    <h5 class="table-title mb-4">
+                      State Health Authority Compliance Indices
+                    </h5>
+                    <ul
+                      class="list-group list-group-flush border-top border-color"
+                    >
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-bottom border-color"
+                      >
+                        <span class="fw-semibold text-slate"
+                          >Medicare and Medicaid Audit Registers</span
+                        >
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          ><i class="fa-solid fa-circle-check me-1"></i>
+                          Compliant</span
+                        >
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-bottom border-color"
+                      >
+                        <span class="fw-semibold text-slate"
+                          >Staff Criminal Background Screening Checklists</span
+                        >
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          ><i class="fa-solid fa-circle-check me-1"></i>
+                          Compliant</span
+                        >
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-bottom border-color"
+                      >
+                        <span class="fw-semibold text-slate"
+                          >Location-Enabled GPS Check-ins audits (EVV)</span
+                        >
+                        <span
+                          class="badge bg-warning bg-opacity-15 text-warning border border-warning-subtle fw-semibold px-2 py-1"
+                          ><i class="fa-solid fa-triangle-exclamation me-1"></i>
+                          Under Audit</span
+                        >
+                      </li>
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-bottom-0"
+                      >
+                        <span class="fw-semibold text-slate"
+                          >Patient Care Plan review milestones compliance</span
+                        >
+                        <span
+                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          ><i class="fa-solid fa-circle-check me-1"></i>
+                          Compliant</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <!-- Custom Styled Rating Card (Linear Gradient Overlay) -->
+                  <div
+                    class="card border-0 shadow-sm p-4 text-white h-100"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--teal-primary) 0%,
+                        var(--teal-dark) 100%
+                      );
+                      border-radius: 20px;
+                      border: 1px solid rgba(255, 255, 255, 0.05);
+                    "
+                  >
+                    <h5 class="fw-bold mb-3 text-white">
+                      <i class="fa-solid fa-award text-warning me-2"></i>Agency
+                      Quality Metrics
+                    </h5>
+                    <div class="d-flex align-items-baseline gap-2 mb-2 mt-3">
+                      <span class="fs-1 fw-bold text-white">4.92</span>
+                      <span class="small text-white-50"
+                        >out of 5.0 rating index</span
+                      >
+                    </div>
+                    <div class="mb-3 text-warning fs-5">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p
+                      class="small text-white-50 mb-0 mt-3"
+                      style="line-height: 1.7"
+                    >
+                      Calculated dynamically across 124 family check-in surveys.
+                      We maintain a zero-incident compliance classification.
+                      Dignity and Care at home remains our core agency
+                      objective.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Portal Footer -->
+        <footer class="dashboard-footer">
+          <small
+            >&copy; 2026 Stackly Care Services Portal. All Rights Reserved.
+            Dignity, Compassion, and Integrity.</small
+          >
+        </footer>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dashboard Core Controller Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Authenticated User Verification
+        const sessionData = localStorage.getItem("elderlyCareUser");
+        if (!sessionData) {
+          // No session found, redirect back to login page
+          window.location.href = "login.html";
+          return;
+        }
+
+        const user = JSON.parse(sessionData);
+        const userEmail = user.email || "user@domain.com";
+        const userRole = user.role || "client"; // Default to client if role is undefined
+        const loginTime = user.loginTime || new Date().toLocaleString();
+
+        // 2. Extract readable username from email
+        let displayUsername = "User";
+        if (userEmail && userEmail.includes("@")) {
+          const rawName = userEmail.split("@")[0];
+          // Capitalize first letter
+          displayUsername = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+        }
+
+        // Set navbar and greeting variables
+        document.getElementById("userNameLabel").textContent = displayUsername;
+        document.getElementById("userNavbarName").textContent = displayUsername;
+        document.getElementById("dropdownEmail").textContent = userEmail;
+        document.getElementById("loginTimeText").textContent = loginTime;
+
+        // Set avatar letter
+        const firstLetter = displayUsername.charAt(0).toUpperCase();
+        document.getElementById("userAvatar").textContent = firstLetter;
+        document.getElementById("userNavbarAvatar").textContent = firstLetter;
+
+        // Display customized role label
+        let displayRole = "Care Client";
+        let greetingMsg =
+          "Access your Stackly Care portal below. You can update schedules, inspect health reports, and communicate directly with care supervisors.";
+
+        if (userRole === "client") {
+          displayRole = "Client / Family Member";
+          greetingMsg =
+            "Access your home health plan, review registered nurse notes, and coordinate schedules for your family member.";
+        } else if (userRole === "caregiver") {
+          displayRole = "Caregiver / Nurse";
+          greetingMsg =
+            "Review clinical shift assignments, track medications checklist, and clock hours with Electronic Visit Verification (EVV).";
+        } else if (userRole === "admin") {
+          displayRole = "System Administrator";
+          greetingMsg =
+            "Monitor operations, approve caregiver certifications, review compliance audits, and manage billing payouts.";
+        }
+
+        document.getElementById("userRoleBadge").textContent = displayRole;
+        document.getElementById("dropdownRole").textContent = displayRole;
+        document.getElementById("greetingTitle").textContent =
+          "Welcome back, " + displayUsername + "!";
+        document.getElementById("greetingMessage").textContent = greetingMsg;
+
+        // 3. Show Role Specific Sidebar Navigation & Panels
+        document
+          .getElementById("navGroup-" + userRole)
+          .classList.remove("d-none");
+        document
+          .getElementById("panels-" + userRole)
+          .classList.remove("d-none");
+
+        // Set page title based on role
+        document.title = "Portal - " + displayRole;
+
+        // 4. Panel Switching Functionality (Tabs switcher in dashboard)
+        const sidebarLinks = document.querySelectorAll(
+          "#navGroup-" + userRole + " .sidebar-link",
+        );
+        const panels = document.querySelectorAll(
+          "#panels-" + userRole + " .dashboard-panel",
+        );
+
+        sidebarLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Remove active classes
+            sidebarLinks.forEach((l) => l.classList.remove("active"));
+            panels.forEach((p) => p.classList.add("d-none"));
+
+            // Set current active link
+            this.classList.add("active");
+
+            // Show selected panel
+            const panelId = "panel-" + this.getAttribute("data-panel");
+            const targetPanel = document.getElementById(panelId);
+            if (targetPanel) {
+              targetPanel.classList.remove("d-none");
+            }
+
+            // Close mobile sidebar after clicking a nav link
+            const wrapper = document.getElementById("dashboardWrapper");
+            wrapper.classList.remove("mobile-sidebar-active");
+          });
+        });
+
+        // 5. Sidebar Toggle Collapse
+        const sidebarCollapseBtn = document.getElementById("sidebarCollapse");
+        const wrapper = document.getElementById("dashboardWrapper");
+        const backdrop = document.getElementById("sidebarBackdrop");
+
+        sidebarCollapseBtn.addEventListener("click", function () {
+          if (window.innerWidth >= 992) {
+            wrapper.classList.toggle("sidebar-collapsed");
+          } else {
+            wrapper.classList.toggle("mobile-sidebar-active");
+          }
+        });
+
+        // Backdrop click to dismiss mobile sidebar
+        backdrop.addEventListener("click", function () {
+          wrapper.classList.remove("mobile-sidebar-active");
+        });
+
+        // Window resize event handler to clean classes
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 992) {
+            wrapper.classList.remove("mobile-sidebar-active");
+          } else {
+            wrapper.classList.remove("sidebar-collapsed");
+          }
+        });
+
+        // 6. Logout Buttons
+        const logoutBtns = document.querySelectorAll(".logout-btn");
+        logoutBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("elderlyCareUser");
+            window.location.href = "login.html";
+          });
+        });
+
+        // 7. Dummy Interactive Clock-In Widget for Caregiver
+        if (userRole === "caregiver") {
+          let clockTimer = null;
+          let seconds = 0;
+          const clockDisplay = document.getElementById("clockDisplay");
+          const clockInBtn = document.getElementById("clockInBtn");
+          const clockOutBtn = document.getElementById("clockOutBtn");
+          const clockStatusText = document.getElementById("clockStatusText");
+
+          function formatTime(s) {
+            const hrs = Math.floor(s / 3600)
+              .toString()
+              .padStart(2, "0");
+            const mins = Math.floor((s % 3600) / 60)
+              .toString()
+              .padStart(2, "0");
+            const secs = (s % 60).toString().padStart(2, "0");
+            return hrs + ":" + mins + ":" + secs;
+          }
+
+          clockInBtn.addEventListener("click", function () {
+            // Ask for GPS permission mock or real
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  startClock(
+                    position.coords.latitude,
+                    position.coords.longitude,
+                  );
+                },
+                (error) => {
+                  // Fallback without precise coordinates
+                  startClock(0, 0);
+                },
+              );
+            } else {
+              startClock(0, 0);
+            }
+          });
+
+          function startClock(lat, lng) {
+            clockInBtn.classList.add("d-none");
+            clockOutBtn.classList.remove("d-none");
+
+            const locDetails =
+              lat !== 0
+                ? `GPS Verified (${lat.toFixed(4)}, ${lng.toFixed(4)})`
+                : "Location Allowed";
+            clockStatusText.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-location-dot me-1"></i> Clocked In: ${locDetails}</span>`;
+
+            clockTimer = setInterval(() => {
+              seconds++;
+              clockDisplay.textContent = formatTime(seconds);
+            }, 1000);
+          }
+
+          clockOutBtn.addEventListener("click", function () {
+            clearInterval(clockTimer);
+            clockTimer = null;
+            seconds = 0;
+            clockDisplay.textContent = "00:00:00";
+
+            clockInBtn.classList.remove("d-none");
+            clockOutBtn.classList.add("d-none");
+            clockStatusText.innerHTML = `<span class="text-muted">Status: Shift ended. Note log required.</span>`;
+
+            // Trigger shift logs tab switch automatically for UI experience
+            const shiftLink = document.querySelector(
+              '[data-panel="caregiver-shift"]',
+            );
+            if (shiftLink) shiftLink.click();
+          });
+        }
+
+        // 8. 404 Interceptor for Empty Links and Generic Buttons
+        // "Dashboard all the empty links, # and buttons click and redirect to 404 page, just add a script for that."
+        document.addEventListener("click", function (e) {
+          // Check for empty/dummy anchor links
+          const link = e.target.closest("a");
+          if (link) {
+            const href = link.getAttribute("href");
+            const isSidebarSwitch =
+              link.classList.contains("sidebar-link") ||
+              link.closest(".sidebar-nav");
+            const isDropdownToggle =
+              link.classList.contains("dropdown-toggle") ||
+              link.closest(".dropdown-menu");
+            const isLogout = link.classList.contains("logout-btn");
+
+            if (href === "#" || href === "" || href === "javascript:void(0)") {
+              // If it's NOT a functional link (like tabs switcher, dropdowns, logout) -> redirect to 404
+              if (!isSidebarSwitch && !isDropdownToggle && !isLogout) {
+                e.preventDefault();
+                window.location.href = "../404.html";
+                return;
+              }
+            }
+          }
+
+          // Check for buttons click
+          const button = e.target.closest("button");
+          if (button) {
+            // Verify if the button is dummy or has been marked as .btn-dummy
+            // A button is functional if it is:
+            // - The sidebar toggle (#sidebarCollapse)
+            // - Dropdown toggles (like profile/alert bell)
+            // - Clock-in/out buttons (#clockInBtn, #clockOutBtn)
+            const isSidebarCollapse =
+              button.id === "sidebarCollapse" ||
+              button.closest("#sidebarCollapse");
+            const isClockBtn =
+              button.id === "clockInBtn" || button.id === "clockOutBtn";
+            const isDropdown =
+              button.hasAttribute("data-bs-toggle") ||
+              button.closest(".dropdown");
+
+            if (!isSidebarCollapse && !isClockBtn && !isDropdown) {
+              e.preventDefault();
+              window.location.href = "../404.html";
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -186,7 +186,7 @@
                     <div class="col-lg-8">
                         <div class="application-form-card border shadow-sm">
                             <h3 class="fw-bold text-teal font-secondary mb-4 text-center">Online Job Application</h3>
-                            <form action="#" onsubmit="event.preventDefault(); alert('Thank you for applying. We will contact you soon!');">
+                            <form action="#" onsubmit="event.preventDefault(); const btn = this.querySelector('button[type=submit]'); if (btn) { btn.disabled = true; btn.innerHTML = '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Application Sent!'; btn.className = 'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm'; }">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label small fw-bold">Full Name *</label>

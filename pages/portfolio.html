@@ -337,7 +337,11 @@
                     class="play-btn"
                     onclick="
                       event.preventDefault();
-                      alert('Loading virtual tour... (Mockup)');
+                      const icon = this.querySelector('i');
+                      if (icon) {
+                        icon.className = 'fa-solid fa-spinner fa-spin';
+                        setTimeout(() => { icon.className = 'fa-solid fa-play'; }, 1500);
+                      }
                     "
                     ><i class="fa-solid fa-play"></i
                   ></a>

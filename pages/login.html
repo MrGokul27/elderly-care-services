@@ -490,9 +490,17 @@
             // Disable submit button during mock submit process
             document.getElementById("submitBtn").disabled = true;
 
-            // Simulate auth process, redirect to Home Page for demo purposes
+            // Save login data to localStorage for the dashboard page
+            const userData = {
+              role: roleInput.value,
+              email: emailInput.value,
+              loginTime: new Date().toLocaleString(),
+            };
+            localStorage.setItem("elderlyCareUser", JSON.stringify(userData));
+
+            // Simulate auth process, redirect to Dashboard Page
             setTimeout(() => {
-              window.location.href = "../index.html";
+              window.location.href = "dashboard.html";
             }, 1500);
           } else {
             // Show error banner at the top
