@@ -37,6 +37,26 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         footerArea.innerHTML = adjustPaths(data, isSubPage);
         initScrollToTop();
+
+        // Handle Newsletter Form Submission
+        const newsletterForm = footerArea.querySelector(".newsletter-form");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const btn = newsletterForm.querySelector('button[type="submit"]');
+            const input = newsletterForm.querySelector('input[type="email"]');
+            if (btn) {
+              btn.disabled = true;
+              btn.innerHTML =
+                '<i class="fa-solid fa-circle-check me-1"></i> Subscribed!';
+              btn.className =
+                "btn btn-success rounded-end-pill px-4 text-white";
+            }
+            if (input) {
+              input.disabled = true;
+            }
+          });
+        }
       })
       .catch((error) => console.error("Error loading footer:", error));
   }
@@ -158,6 +178,7 @@ function highlightActiveNav() {
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
+    if (!href) return;
     const linkPage = href.substring(href.lastIndexOf("/") + 1);
 
     if (
@@ -183,10 +204,13 @@ function initMobileMenu() {
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         if (window.innerWidth < 992) {
-          const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-          if (bsCollapse) {
-            bsCollapse.hide();
+          let bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+          if (!bsCollapse) {
+            bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+              toggle: false,
+            });
           }
+          bsCollapse.hide();
         }
       });
     });

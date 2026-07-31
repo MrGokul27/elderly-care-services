@@ -96,3 +96,38 @@
   background-color: var(--accent-gold);
   color: #fff;
 }
+
+/* 5. Gallery Filter Buttons Styling */
+.gallery-filter-btn {
+  border: 2px solid var(--border-color);
+  background-color: #fff;
+  color: var(--text-slate);
+  padding: 10px 26px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.gallery-filter-btn.active {
+  background-color: var(--primary-teal) !important;
+  color: #fff !important;
+  border-color: var(--primary-teal) !important;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.25) !important;
+}
+
+.gallery-filter-btn:hover:not(.active) {
+  background-color: var(--primary-teal-xlight) !important;
+  color: var(--primary-teal) !important;
+  border-color: var(--primary-teal-light) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(15, 118, 110, 0.12);
+}
+
+.gallery-filter-btn:active {
+  transform: translateY(1px) scale(0.98);
+}

@@ -2756,6 +2756,143 @@
           });
         }
 
+        // Form Submission Handler for Client Support Form
+        const clientSupportForm = document.getElementById("clientSupportForm");
+        if (clientSupportForm) {
+          clientSupportForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const submitBtn = clientSupportForm.querySelector(
+              'button[type="submit"]',
+            );
+
+            // Create a nice success alert card
+            const alertDiv = document.createElement("div");
+            alertDiv.className =
+              "alert alert-success mt-3 alert-dismissible fade show border border-success-subtle shadow-sm";
+            alertDiv.role = "alert";
+            alertDiv.innerHTML = `
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-check fs-4 me-2"></i>
+                <div>
+                  <strong>Ticket Submitted!</strong> Your request has been logged. A clinical supervisor will contact you within 2 hours.
+                </div>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+
+            // Remove any existing alerts first
+            const existingAlert = clientSupportForm.querySelector(".alert");
+            if (existingAlert) existingAlert.remove();
+
+            clientSupportForm.appendChild(alertDiv);
+
+            if (submitBtn) {
+              const originalHtml = submitBtn.innerHTML;
+              submitBtn.disabled = true;
+              submitBtn.innerHTML =
+                '<i class="fa-solid fa-circle-check me-1"></i> Request Sent!';
+              submitBtn.className = "btn btn-success rounded-pill px-4";
+
+              setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHtml;
+                submitBtn.className = "btn btn-teal rounded-pill px-4";
+              }, 4000);
+            }
+
+            // Clear fields
+            clientSupportForm.reset();
+          });
+        }
+
+        // Form Submission Handler for Caregiver Shift Log Form
+        const shiftLogForm = document.getElementById("shiftLogForm");
+        if (shiftLogForm) {
+          shiftLogForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const submitBtn = shiftLogForm.querySelector(
+              'button[type="submit"]',
+            );
+
+            // Insert a new mock row into the shifts log table
+            const tableBody = document.querySelector(
+              "#panel-caregiver-shift table tbody",
+            );
+            if (tableBody) {
+              const client = shiftLogForm.querySelector("select").value;
+              const dateVal =
+                shiftLogForm.querySelector('input[type="date"]').value;
+              const mileage = shiftLogForm.querySelector(
+                'input[type="number"]',
+              ).value;
+
+              let formattedDate = dateVal;
+              try {
+                if (dateVal) {
+                  const options = {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  };
+                  formattedDate = new Date(dateVal).toLocaleDateString(
+                    "en-US",
+                    options,
+                  );
+                }
+              } catch (err) {}
+
+              const newRow = document.createElement("tr");
+              newRow.innerHTML = `
+                <td class="font-monospace fw-semibold">${formattedDate}</td>
+                <td>${client}</td>
+                <td class="font-monospace">8.0 hrs</td>
+                <td>${mileage} miles</td>
+                <td>
+                  <span class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1">Approved</span>
+                </td>
+              `;
+              tableBody.insertBefore(newRow, tableBody.firstChild);
+            }
+
+            // Create a success alert
+            const alertDiv = document.createElement("div");
+            alertDiv.className =
+              "alert alert-success mt-3 alert-dismissible fade show border border-success-subtle shadow-sm";
+            alertDiv.role = "alert";
+            alertDiv.innerHTML = `
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-circle-check fs-4 me-2"></i>
+                <div>
+                  <strong>Shift Log Submitted!</strong> Daily verification note has been securely saved.
+                </div>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+
+            const existingAlert = shiftLogForm.querySelector(".alert");
+            if (existingAlert) existingAlert.remove();
+
+            shiftLogForm.appendChild(alertDiv);
+
+            if (submitBtn) {
+              const originalHtml = submitBtn.innerHTML;
+              submitBtn.disabled = true;
+              submitBtn.innerHTML =
+                '<i class="fa-solid fa-circle-check me-1"></i> Log Saved!';
+              submitBtn.className = "btn btn-success w-100 rounded-pill";
+
+              setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHtml;
+                submitBtn.className = "btn btn-teal w-100 rounded-pill";
+              }, 4000);
+            }
+
+            // Clear fields
+            shiftLogForm.reset();
+          });
+        }
+
         // 8. 404 Interceptor for Empty Links and Generic Buttons
         // "Dashboard all the empty links, # and buttons click and redirect to 404 page, just add a script for that."
         document.addEventListener("click", function (e) {
@@ -2787,18 +2924,31 @@
             // Verify if the button is dummy or has been marked as .btn-dummy
             // A button is functional if it is:
             // - The sidebar toggle (#sidebarCollapse)
-            // - Dropdown toggles (like profile/alert bell)
+            // - Dropdown/Bootstrap toggles (like profile/alert bell)
             // - Clock-in/out buttons (#clockInBtn, #clockOutBtn)
+            // - Form submission / reset / close dismiss buttons
             const isSidebarCollapse =
               button.id === "sidebarCollapse" ||
               button.closest("#sidebarCollapse");
             const isClockBtn =
               button.id === "clockInBtn" || button.id === "clockOutBtn";
-            const isDropdown =
+            const isBsToggle =
               button.hasAttribute("data-bs-toggle") ||
+              button.closest("[data-bs-toggle]") ||
               button.closest(".dropdown");
+            const isFormBtn =
+              button.type === "submit" || button.closest("form");
+            const isDismissBtn =
+              button.classList.contains("btn-close") ||
+              button.hasAttribute("data-bs-dismiss");
 
-            if (!isSidebarCollapse && !isClockBtn && !isDropdown) {
+            if (
+              !isSidebarCollapse &&
+              !isClockBtn &&
+              !isBsToggle &&
+              !isFormBtn &&
+              !isDismissBtn
+            ) {
               e.preventDefault();
               window.location.href = "../404.html";
             }
