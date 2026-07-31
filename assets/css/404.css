@@ -88,7 +88,6 @@
 /* Animated Graphic */
 .error-graphic-wrap {
   position: relative;
-  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,16 +111,14 @@
   letter-spacing: -2px;
   margin: 0;
   opacity: 0.08;
-  position: absolute;
-  top: 40%;
-  left: 50%;
   transform: translate(-50%, -50%);
   user-select: none;
   pointer-events: none;
 }
 
 .error-icon-box {
-  position: relative;
+  position: absolute;
+  left: 0;
   z-index: 2;
   width: 100px;
   height: 100px;
@@ -402,11 +399,9 @@
 }
 
 @media (max-width: 480px) {
-  .error-page-container {
-    padding: 1.5rem;
-  }
   .error-card {
     padding: 2.5rem 1.25rem;
+    border-radius: 0;
   }
   .error-links-section {
     padding: 1rem;

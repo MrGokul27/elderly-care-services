@@ -62,7 +62,7 @@ h6 {
 .auth-image-side {
   flex: 1.1;
   position: relative;
-  background-image: url("../images/auth_banner.jpg");
+  background-image: url("../images/auth_banner.webp");
   background-size: cover;
   background-position: center;
   display: flex;

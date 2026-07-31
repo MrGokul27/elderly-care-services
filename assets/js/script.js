@@ -45,6 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize Preloader
   initPreloader();
+
+  // Initialize scroll-triggered animations
+  initScrollAnimations();
 });
 
 // Preloader Dismissal Logic
@@ -273,5 +276,118 @@ function initEmptyLinkRedirects() {
         window.location.href = redirectPath;
       }
     }
+  });
+}
+
+// Intersection Observer for scroll reveal animations
+function initScrollAnimations() {
+  // Inject reveal classes dynamically across all pages/sections
+  injectScrollAnimationClasses();
+
+  const animatedElements = document.querySelectorAll(
+    ".reveal-fade-in, .reveal-fade-up, .reveal-fade-down, .reveal-fade-left, .reveal-fade-right, .reveal-zoom-in, .reveal-zoom-out",
+  );
+
+  if (animatedElements.length === 0) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px 0px -8% 0px", // Trigger when 8% inside the viewport
+    threshold: 0.05,
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target); // Animates only once
+      }
+    });
+  }, observerOptions);
+
+  animatedElements.forEach((el) => {
+    observer.observe(el);
+  });
+}
+
+// Programmatically apply reveal classes and staggered delays to sections, headings, cards, and images
+function injectScrollAnimationClasses() {
+  // 1. Identify all main content sections and add reveal-fade-in
+  const sections = document.querySelectorAll(
+    "main > section, .error-page-container",
+  );
+  sections.forEach((sec) => {
+    if (
+      sec.classList.contains("hero") ||
+      sec.classList.contains("page-banner") ||
+      sec.id === "preloader"
+    )
+      return;
+    sec.classList.add("reveal-fade-in");
+  });
+
+  // 2. Animate Section Headers (tag, title, desc)
+  const sectionHeaders = document.querySelectorAll(
+    ".section-tag, .section-title, .section-desc, .section-heading, .section-subtitle, .error-number, .error-title, .error-description",
+  );
+  sectionHeaders.forEach((hdr) => {
+    hdr.classList.add("reveal-fade-up");
+  });
+
+  // 3. Animate grid rows or lists of cards with staggering delays
+  const rows = document.querySelectorAll(
+    "main .row, main .quick-bar-box, .auth-wrapper, .error-links-grid",
+  );
+  rows.forEach((row) => {
+    const cards = row.querySelectorAll(
+      ".col-md-4, .col-lg-4, .col-xl-3, .col-md-6, .col-lg-3, " +
+        ".quick-bar-card, .service-card, .value-card, .process-step-card, .caregiver-card, " +
+        ".testimonial-card, .news-card, .founder-card, .standards-card, " +
+        ".board-card, .culture-card, .benefit-card, .job-card, .location-card, " +
+        ".case-study-card, .scrapbook-item, .team-member-card, .blog-card, " +
+        ".auth-card, .auth-image-side, .auth-form-container, .gallery-item-card, .portfolio-item, " +
+        ".error-card, .error-link-card",
+    );
+
+    cards.forEach((card, idx) => {
+      // Don't double animate if parent/ancestor already has a reveal class
+      let ancestor = card.parentElement;
+      let hasAnimatedAncestor = false;
+      while (ancestor && ancestor !== row) {
+        if (
+          ancestor.classList.contains("reveal-fade-up") ||
+          ancestor.classList.contains("reveal-fade-in") ||
+          ancestor.classList.contains("reveal-zoom-in")
+        ) {
+          hasAnimatedAncestor = true;
+          break;
+        }
+        ancestor = ancestor.parentElement;
+      }
+      if (hasAnimatedAncestor) return;
+
+      card.classList.add("reveal-fade-up");
+
+      // Add stagger delay (up to 4 items in a row)
+      const delayStep = (idx % 4) * 100;
+      if (delayStep > 0) {
+        card.classList.add(`delay-${delayStep}`);
+      }
+    });
+  });
+
+  // 4. Animate standalone images with zoom-in
+  const images = document.querySelectorAll(
+    "main img:not(.preloader-logo):not(.header-logo):not(.footer-logo), .auth-image-side img, .error-page-container img",
+  );
+  images.forEach((img) => {
+    if (
+      img.closest(
+        ".quick-bar-card, .service-card, .value-card, .process-step-card, .caregiver-card, .testimonial-card, .news-card, .founder-card, .standards-card, .board-card, .culture-card, .benefit-card, .job-card, .location-card, .case-study-card, .scrapbook-item, .team-member-card, .blog-card, .auth-card, .gallery-item-card, .portfolio-item, .error-card",
+      )
+    ) {
+      return; // Animating the card itself is enough
+    }
+    img.classList.add("reveal-zoom-in");
   });
 }
