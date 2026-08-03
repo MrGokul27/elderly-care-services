@@ -605,6 +605,7 @@
                     type="range"
                     class="calc-slider"
                     id="careHours"
+                    name="careHours"
                     min="2"
                     max="60"
                     value="20"
@@ -1353,45 +1354,64 @@
                 >
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="assessmentName"
                         >Your Name *</label
                       >
                       <input
                         type="text"
                         class="form-control validate-name-input"
+                        id="assessmentName"
+                        name="assessmentName"
                         placeholder="E.g. John Doe"
                         maxlength="16"
                         required
                       />
                     </div>
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="assessmentPhone"
                         >Phone Number *</label
                       >
                       <input
                         type="tel"
                         class="form-control validate-number-input"
+                        id="assessmentPhone"
+                        name="assessmentPhone"
                         placeholder="E.g. +91 (555) 000-0000"
                         maxlength="10"
                         required
                       />
                     </div>
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="assessmentEmail"
                         >Email Address *</label
                       >
                       <input
                         type="email"
                         class="form-control"
+                        id="assessmentEmail"
+                        name="assessmentEmail"
                         placeholder="E.g. name@email.com"
                         required
                       />
                     </div>
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="assessmentCareNeed"
                         >Primary Care Need *</label
                       >
-                      <select class="form-select" required>
+                      <select
+                        class="form-select"
+                        id="assessmentCareNeed"
+                        name="assessmentCareNeed"
+                        required
+                      >
                         <option value="" disabled selected>
                           Select care specialty
                         </option>
@@ -1413,11 +1433,15 @@
                       </select>
                     </div>
                     <div class="col-12">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="assessmentNote"
                         >Short Note (Optional)</label
                       >
                       <textarea
                         class="form-control"
+                        id="assessmentNote"
+                        name="assessmentNote"
                         rows="3"
                         placeholder="Tell us briefly about your situation..."
                       ></textarea>

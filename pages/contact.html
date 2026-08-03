@@ -164,45 +164,60 @@
                 >
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="contactFullName"
                         >Full Name *</label
                       >
                       <input
                         type="text"
                         class="form-control validate-name-input"
+                        id="contactFullName"
+                        name="contactFullName"
                         placeholder="E.g. Jane Doe"
                         required
                         maxlength="16"
                       />
                     </div>
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label class="form-label small fw-bold" for="contactPhone"
                         >Phone Number *</label
                       >
                       <input
                         type="tel"
                         class="form-control validate-number-input"
+                        id="contactPhone"
+                        name="contactPhone"
                         placeholder="E.g. +91 (555) 000-0000"
                         maxlength="10"
                         required
                       />
                     </div>
                     <div class="col-12">
-                      <label class="form-label small fw-bold"
+                      <label class="form-label small fw-bold" for="contactEmail"
                         >Email Address *</label
                       >
                       <input
                         type="email"
                         class="form-control"
+                        id="contactEmail"
+                        name="contactEmail"
                         placeholder="E.g. name@email.com"
                         required
                       />
                     </div>
                     <div class="col-12">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="contactInquiryType"
                         >Primary Inquiry Type *</label
                       >
-                      <select class="form-select" required>
+                      <select
+                        class="form-select"
+                        id="contactInquiryType"
+                        name="contactInquiryType"
+                        required
+                      >
                         <option value="" disabled selected>
                           Select option
                         </option>
@@ -217,11 +232,15 @@
                       </select>
                     </div>
                     <div class="col-12">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="contactMessage"
                         >Message Details *</label
                       >
                       <textarea
                         class="form-control"
+                        id="contactMessage"
+                        name="contactMessage"
                         rows="4"
                         placeholder="How can we support you? Tell us about your care needs..."
                         required
@@ -338,20 +357,29 @@
                 >
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="feedbackAccountName"
                         >Account Name (Optional)</label
                       >
                       <input
                         type="text"
                         class="form-control validate-name-input"
+                        id="feedbackAccountName"
+                        name="feedbackAccountName"
                         placeholder="E.g. Jane Henderson"
                       />
                     </div>
                     <div class="col-md-6">
-                      <label class="form-label small fw-bold"
+                      <label class="form-label small fw-bold" for="feedbackType"
                         >Feedback Type *</label
                       >
-                      <select class="form-select" required>
+                      <select
+                        class="form-select"
+                        id="feedbackType"
+                        name="feedbackType"
+                        required
+                      >
                         <option value="" disabled selected>
                           Select category
                         </option>
@@ -361,11 +389,15 @@
                       </select>
                     </div>
                     <div class="col-12">
-                      <label class="form-label small fw-bold"
+                      <label
+                        class="form-label small fw-bold"
+                        for="feedbackNotes"
                         >Feedback Notes *</label
                       >
                       <textarea
                         class="form-control"
+                        id="feedbackNotes"
+                        name="feedbackNotes"
                         rows="4"
                         required
                         placeholder="Type notes here..."

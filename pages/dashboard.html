@@ -185,8 +185,13 @@
                 >
                   <i class="fa-solid fa-magnifying-glass text-teal"></i>
                 </span>
+                <label for="dashboardSearch" class="visually-hidden"
+                  >Search portal contents</label
+                >
                 <input
                   type="text"
+                  id="dashboardSearch"
+                  name="dashboardSearch"
                   placeholder="Search portal contents..."
                   class="form-control border-start-0 shadow-none"
                   style="
@@ -721,7 +726,7 @@
                         </td>
                         <td class="px-3">
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Confirmed</span
                           >
                         </td>
@@ -741,7 +746,7 @@
                         </td>
                         <td class="px-3">
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Confirmed</span
                           >
                         </td>
@@ -761,7 +766,7 @@
                         </td>
                         <td class="px-3">
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Confirmed</span
                           >
                         </td>
@@ -781,7 +786,7 @@
                         </td>
                         <td class="px-3">
                           <span
-                            class="badge bg-warning bg-opacity-15 text-warning border border-warning-subtle fw-semibold px-2 py-1"
+                            class="badge bg-warning bg-opacity-15 text-white border border-warning-subtle fw-semibold px-2 py-1"
                             >Matching Staff</span
                           >
                         </td>
@@ -801,7 +806,7 @@
                         </td>
                         <td class="px-3">
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Confirmed</span
                           >
                         </td>
@@ -1028,7 +1033,7 @@
                         </td>
                         <td>
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Settled</span
                           >
                         </td>
@@ -1050,7 +1055,7 @@
                         </td>
                         <td>
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Settled</span
                           >
                         </td>
@@ -1072,7 +1077,7 @@
                         </td>
                         <td>
                           <span
-                            class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                            class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                             >Settled</span
                           >
                         </td>
@@ -1102,10 +1107,14 @@
                     </h5>
                     <form id="clientSupportForm" class="btn-dummy">
                       <div class="mb-3">
-                        <label class="form-label-custom mb-1"
+                        <label class="form-label-custom mb-1" for="supportTopic"
                           >Select Topic</label
                         >
-                        <select class="form-select border-color">
+                        <select
+                          class="form-select border-color"
+                          id="supportTopic"
+                          name="supportTopic"
+                        >
                           <option>Schedule Revision / Vacation Request</option>
                           <option>Caregiver Feedback or Match Request</option>
                           <option>Medication Plan Updates</option>
@@ -1114,11 +1123,15 @@
                         </select>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label-custom mb-1"
+                        <label
+                          class="form-label-custom mb-1"
+                          for="supportMessage"
                           >Detailed Message</label
                         >
                         <textarea
                           class="form-control border-color"
+                          id="supportMessage"
+                          name="supportMessage"
                           rows="5"
                           placeholder="Specify requirements... Our clinical supervisors review tickets within 2 hours."
                         ></textarea>
@@ -1587,10 +1600,14 @@
                     <h5 class="table-title mb-3">Record Daily Shift Details</h5>
                     <form id="shiftLogForm" class="btn-dummy">
                       <div class="mb-3">
-                        <label class="form-label-custom mb-1"
+                        <label class="form-label-custom mb-1" for="shiftClient"
                           >Select Client</label
                         >
-                        <select class="form-select border-color">
+                        <select
+                          class="form-select border-color"
+                          id="shiftClient"
+                          name="shiftClient"
+                        >
                           <option>Margaret Vance</option>
                           <option>James Rutherford</option>
                           <option>Arthur Pendelton</option>
@@ -1598,20 +1615,28 @@
                       </div>
                       <div class="row mb-3">
                         <div class="col">
-                          <label class="form-label-custom mb-1">Date</label>
+                          <label class="form-label-custom mb-1" for="shiftDate"
+                            >Date</label
+                          >
                           <input
                             type="date"
                             class="form-control border-color"
+                            id="shiftDate"
+                            name="shiftDate"
                             required
                           />
                         </div>
                         <div class="col">
-                          <label class="form-label-custom mb-1"
+                          <label
+                            class="form-label-custom mb-1"
+                            for="shiftMileage"
                             >Mileage (mi)</label
                           >
                           <input
                             type="number"
                             class="form-control border-color"
+                            id="shiftMileage"
+                            name="shiftMileage"
                             placeholder="e.g. 12"
                             min="0"
                             required
@@ -1619,11 +1644,13 @@
                         </div>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label-custom mb-1"
+                        <label class="form-label-custom mb-1" for="shiftNotes"
                           >Detailed Shift Narrative Notes</label
                         >
                         <textarea
                           class="form-control border-color"
+                          id="shiftNotes"
+                          name="shiftNotes"
                           rows="4"
                           placeholder="Log patient nutritional intake, vital metrics, physical therapy completed, medication checks, and general mood..."
                           required
@@ -1667,7 +1694,7 @@
                             <td>12 miles</td>
                             <td>
                               <span
-                                class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                                 >Approved</span
                               >
                             </td>
@@ -1681,7 +1708,7 @@
                             <td>18 miles</td>
                             <td>
                               <span
-                                class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                                 >Approved</span
                               >
                             </td>
@@ -1695,7 +1722,7 @@
                             <td>12 miles</td>
                             <td>
                               <span
-                                class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                                class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                                 >Approved</span
                               >
                             </td>
@@ -1719,7 +1746,7 @@
                     Log Checklist
                   </h5>
                   <span
-                    class="badge bg-danger bg-opacity-15 text-danger border border-danger-subtle fw-bold px-3 py-1"
+                    class="badge bg-danger bg-opacity-15 text-white border border-danger-subtle fw-bold px-3 py-1"
                     >Critical Nurse Routine</span
                   >
                 </div>
@@ -1833,7 +1860,7 @@
                           >
                         </div>
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           >Valid (Exp: Oct 2027)</span
                         >
                       </li>
@@ -1849,7 +1876,7 @@
                           >
                         </div>
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           >Valid (Exp: Dec 2026)</span
                         >
                       </li>
@@ -1865,7 +1892,7 @@
                           >
                         </div>
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           >Valid (Exp: Aug 2028)</span
                         >
                       </li>
@@ -1881,7 +1908,7 @@
                           >
                         </div>
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           >Valid (Exp: Mar 2029)</span
                         >
                       </li>
@@ -2437,7 +2464,7 @@
                           >Medicare and Medicaid Audit Registers</span
                         >
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           ><i class="fa-solid fa-circle-check me-1"></i>
                           Compliant</span
                         >
@@ -2449,7 +2476,7 @@
                           >Staff Criminal Background Screening Checklists</span
                         >
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           ><i class="fa-solid fa-circle-check me-1"></i>
                           Compliant</span
                         >
@@ -2461,7 +2488,7 @@
                           >Location-Enabled GPS Check-ins audits (EVV)</span
                         >
                         <span
-                          class="badge bg-warning bg-opacity-15 text-warning border border-warning-subtle fw-semibold px-2 py-1"
+                          class="badge bg-warning bg-opacity-15 text-white border border-warning-subtle fw-semibold px-2 py-1"
                           ><i class="fa-solid fa-triangle-exclamation me-1"></i>
                           Under Audit</span
                         >
@@ -2473,7 +2500,7 @@
                           >Patient Care Plan review milestones compliance</span
                         >
                         <span
-                          class="badge bg-success bg-opacity-15 text-success border border-success-subtle fw-semibold px-2 py-1"
+                          class="badge bg-success bg-opacity-15 text-white border border-success-subtle fw-semibold px-2 py-1"
                           ><i class="fa-solid fa-circle-check me-1"></i>
                           Compliant</span
                         >

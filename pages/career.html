@@ -197,20 +197,20 @@
                             <form action="../404.html" onsubmit="event.preventDefault(); window.location.href = '../404.html';">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label class="form-label small fw-bold">Full Name *</label>
-                                        <input type="text" class="form-control validate-name-input" required placeholder="E.g. Marcus Brody" maxlength="16">
+                                        <label class="form-label small fw-bold" for="careerFullName">Full Name *</label>
+                                        <input type="text" class="form-control validate-name-input" id="careerFullName" name="careerFullName" required placeholder="E.g. Marcus Brody" maxlength="16">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label small fw-bold">Email Address *</label>
-                                        <input type="email" class="form-control" required placeholder="E.g. name@email.com">
+                                        <label class="form-label small fw-bold" for="careerEmail">Email Address *</label>
+                                        <input type="email" class="form-control" id="careerEmail" name="careerEmail" required placeholder="E.g. name@email.com">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label small fw-bold">Phone Number *</label>
-                                        <input type="tel" class="form-control validate-number-input" required placeholder="E.g. +91 (555) 000-0000" maxlength="10">
+                                        <label class="form-label small fw-bold" for="careerPhone">Phone Number *</label>
+                                        <input type="tel" class="form-control validate-number-input" id="careerPhone" name="careerPhone" required placeholder="E.g. +91 (555) 000-0000" maxlength="10">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label small fw-bold">Desired Position *</label>
-                                        <select class="form-select" required>
+                                        <label class="form-label small fw-bold" for="careerPosition">Desired Position *</label>
+                                        <select class="form-select" id="careerPosition" name="careerPosition" required>
                                             <option value="" disabled selected>Select open role</option>
                                             <option value="Registered Nurse">Registered Nurse (RN)</option>
                                             <option value="Companion Caregiver">Companion Caregiver</option>
@@ -218,8 +218,8 @@
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <label class="form-label small fw-bold">Cover Letter / Intro Note *</label>
-                                        <textarea class="form-control" rows="4" required placeholder="Briefly describe your caregiving experience and passion..."></textarea>
+                                        <label class="form-label small fw-bold" for="careerCoverLetter">Cover Letter / Intro Note *</label>
+                                        <textarea class="form-control" id="careerCoverLetter" name="careerCoverLetter" rows="4" required placeholder="Briefly describe your caregiving experience and passion..."></textarea>
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-teal w-100 rounded-pill py-3 fw-bold shadow-sm" type="submit">Submit Application</button>
