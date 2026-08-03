@@ -43,18 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (newsletterForm) {
           newsletterForm.addEventListener("submit", function (e) {
             e.preventDefault();
-            const btn = newsletterForm.querySelector('button[type="submit"]');
-            const input = newsletterForm.querySelector('input[type="email"]');
-            if (btn) {
-              btn.disabled = true;
-              btn.innerHTML =
-                '<i class="fa-solid fa-circle-check me-1"></i> Subscribed!';
-              btn.className =
-                "btn btn-success rounded-end-pill px-4 text-white";
-            }
-            if (input) {
-              input.disabled = true;
-            }
+            const redirectPath = isSubPage ? "../404.html" : "404.html";
+            window.location.href = redirectPath;
           });
         }
       })
@@ -69,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize scroll-triggered animations
   initScrollAnimations();
+
+  // Initialize global input validation for name and number fields
+  initInputValidation();
 });
 
 // Preloader Dismissal Logic
@@ -429,4 +422,51 @@ function updateNavbarForLoggedInUser(headerArea, isSubPage) {
       btn.classList.add("btn-accent");
     }
   }
+}
+
+// Input validation helper to restrict characters on input and keydown
+function initInputValidation() {
+  document.addEventListener("keydown", function (e) {
+    const target = e.target;
+    if (target && target.matches(".validate-name-input")) {
+      // Allow navigation/editing keys, and copy/paste/select shortcuts
+      if (
+        !/^[a-zA-Z\s]$/.test(e.key) &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        e.key !== "Backspace" &&
+        e.key !== "Delete" &&
+        e.key !== "ArrowLeft" &&
+        e.key !== "ArrowRight" &&
+        e.key !== "Tab"
+      ) {
+        e.preventDefault();
+      }
+    }
+    if (target && target.matches(".validate-number-input")) {
+      // Allow navigation/editing keys, and copy/paste/select shortcuts
+      if (
+        !/^[0-9]$/.test(e.key) &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        e.key !== "Backspace" &&
+        e.key !== "Delete" &&
+        e.key !== "ArrowLeft" &&
+        e.key !== "ArrowRight" &&
+        e.key !== "Tab"
+      ) {
+        e.preventDefault();
+      }
+    }
+  });
+
+  document.addEventListener("input", function (e) {
+    const target = e.target;
+    if (target && target.matches(".validate-name-input")) {
+      target.value = target.value.replace(/[^a-zA-Z\s]/g, "");
+    }
+    if (target && target.matches(".validate-number-input")) {
+      target.value = target.value.replace(/[^0-9]/g, "");
+    }
+  });
 }

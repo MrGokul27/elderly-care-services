@@ -156,17 +156,10 @@
             <div class="col-lg-6">
               <div class="p-5 border rounded-4 shadow-sm bg-warm">
                 <form
-                  action="#"
+                  action="../404.html"
                   onsubmit="
                     event.preventDefault();
-                    const btn = this.querySelector('button[type=submit]');
-                    if (btn) {
-                      btn.disabled = true;
-                      btn.innerHTML =
-                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Message Sent!';
-                      btn.className =
-                        'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm';
-                    }
+                    window.location.href = '../404.html';
                   "
                 >
                   <div class="row g-3">
@@ -176,9 +169,10 @@
                       >
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control validate-name-input"
                         placeholder="E.g. Jane Doe"
                         required
+                        maxlength="16"
                       />
                     </div>
                     <div class="col-md-6">
@@ -187,8 +181,9 @@
                       >
                       <input
                         type="tel"
-                        class="form-control"
+                        class="form-control validate-number-input"
                         placeholder="E.g. +91 (555) 000-0000"
+                        maxlength="10"
                         required
                       />
                     </div>
@@ -335,19 +330,10 @@
                   to our advisory board.
                 </p>
                 <form
-                  action="#"
+                  action="../404.html"
                   onsubmit="
                     event.preventDefault();
-                    const feedbackBtn = this.querySelector(
-                      'button[type=submit]',
-                    );
-                    if (feedbackBtn) {
-                      feedbackBtn.disabled = true;
-                      feedbackBtn.innerHTML =
-                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Feedback Logged!';
-                      feedbackBtn.className =
-                        'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm';
-                    }
+                    window.location.href = '../404.html';
                   "
                 >
                   <div class="row g-3">
@@ -357,7 +343,7 @@
                       >
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control validate-name-input"
                         placeholder="E.g. Jane Henderson"
                       />
                     </div>

@@ -1345,17 +1345,10 @@
               </div>
               <div class="col-lg-7">
                 <form
-                  action="#"
+                  action="404.html"
                   onsubmit="
                     event.preventDefault();
-                    const btn = this.querySelector('button[type=submit]');
-                    if (btn) {
-                      btn.disabled = true;
-                      btn.innerHTML =
-                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Request Submitted!';
-                      btn.className =
-                        'btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm';
-                    }
+                    window.location.href = '404.html';
                   "
                 >
                   <div class="row g-3">
@@ -1365,8 +1358,9 @@
                       >
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control validate-name-input"
                         placeholder="E.g. John Doe"
+                        maxlength="16"
                         required
                       />
                     </div>
@@ -1376,8 +1370,9 @@
                       >
                       <input
                         type="tel"
-                        class="form-control"
+                        class="form-control validate-number-input"
                         placeholder="E.g. +91 (555) 000-0000"
+                        maxlength="10"
                         required
                       />
                     </div>

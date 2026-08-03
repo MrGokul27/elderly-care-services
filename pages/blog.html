@@ -243,17 +243,9 @@
                   <small class="text-muted">PDF Worksheets | 1.2 MB</small>
                 </div>
                 <a
-                  href="#"
+                  href="../404.html"
                   class="btn btn-teal rounded-circle d-flex align-items-center justify-content-center"
                   style="width: 40px; height: 40px"
-                  onclick="
-                    event.preventDefault();
-                    const downloadIcon = this.querySelector('i');
-                    if (downloadIcon) {
-                      downloadIcon.className =
-                        'fa-solid fa-circle-check text-white';
-                    }
-                  "
                   ><i class="fa-solid fa-download"></i
                 ></a>
               </div>
@@ -268,16 +260,9 @@
                   <small class="text-muted">PDF Booklet | 3.4 MB</small>
                 </div>
                 <a
-                  href="#"
+                  href="../404.html"
                   class="btn btn-teal rounded-circle d-flex align-items-center justify-content-center"
                   style="width: 40px; height: 40px"
-                  onclick="
-                    event.preventDefault();
-                    const icon = this.querySelector('i');
-                    if (icon) {
-                      icon.className = 'fa-solid fa-circle-check text-white';
-                    }
-                  "
                   ><i class="fa-solid fa-download"></i
                 ></a>
               </div>
@@ -343,18 +328,11 @@
                   NDIS updates, and caregiver resources.
                 </p>
                 <form
-                  action="#"
+                  action="../404.html"
                   class="row g-3 justify-content-center"
                   onsubmit="
                     event.preventDefault();
-                    const btn = this.querySelector('button[type=submit]');
-                    if (btn) {
-                      btn.disabled = true;
-                      btn.innerHTML =
-                        '<i class=&quot;fa-solid fa-circle-check me-1&quot;></i> Subscribed!';
-                      btn.className =
-                        'btn btn-success w-100 rounded-pill py-2 fw-semibold';
-                    }
+                    window.location.href = '../404.html';
                   "
                 >
                   <div class="col-md-8">
