@@ -467,6 +467,35 @@ function initInputValidation() {
     }
     if (target && target.matches(".validate-number-input")) {
       target.value = target.value.replace(/[^0-9]/g, "");
+      target.setCustomValidity("");
     }
+  });
+
+  // Attach submit validation only to home, career and contact page forms
+  const targetFormIds = [
+    "homeAssessmentForm",
+    "careerApplicationForm",
+    "contactInquiryForm",
+    "contactFeedbackForm",
+  ];
+  targetFormIds.forEach(function (id) {
+    const form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const phoneField = form.querySelector(".validate-number-input");
+      if (phoneField) {
+        if (phoneField.value.length !== 10) {
+          phoneField.setCustomValidity(
+            "Please enter a valid 10-digit phone number.",
+          );
+          phoneField.reportValidity();
+          return;
+        }
+        phoneField.setCustomValidity("");
+      }
+      const isSubPage = window.location.pathname.includes("/pages/");
+      window.location.href = isSubPage ? "../404.html" : "404.html";
+    });
   });
 }

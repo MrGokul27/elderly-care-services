@@ -350,10 +350,20 @@ h6 {
   background-color: rgba(15, 118, 110, 0.04);
   border: 1px solid rgba(15, 118, 110, 0.08);
   transition: all 0.25s;
+  max-width: 220px;
+  min-width: 0;
 }
 
 .user-navbar-dropdown:hover {
   background-color: rgba(15, 118, 110, 0.08);
+}
+
+.user-navbar-dropdown #userNavbarName {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 /* --- Dashboard Body & Banner (Stunning Visuals) --- */
@@ -609,9 +619,14 @@ h6 {
 }
 
 /* Caregiver Profile Widget in tables */
+.caregiver-profile-sm {
+  min-width: 0;
+}
+
 .caregiver-profile-sm img {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--teal-primary);
@@ -620,7 +635,30 @@ h6 {
 .caregiver-profile-sm span {
   font-weight: 600;
   color: var(--teal-primary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  display: inline-block;
+}
+
+/* Fixed column widths for Today's Care Activity Logs table */
+#panel-client-overview .table-custom th:nth-child(1),
+#panel-client-overview .table-custom td:nth-child(1) {
+  width: 110px;
+  white-space: nowrap;
+}
+
+#panel-client-overview .table-custom th:nth-child(3),
+#panel-client-overview .table-custom td:nth-child(3) {
+  width: 160px;
+}
+
+#panel-client-overview .table-custom th:nth-child(4),
+#panel-client-overview .table-custom td:nth-child(4) {
+  width: 130px;
+  white-space: nowrap;
 }
 
 /* --- Clock In / Out (Interactive & Premium) --- */
